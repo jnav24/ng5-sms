@@ -25,17 +25,11 @@ export class MessagesComponent implements OnInit {
 
     ngOnInit() {
         this.user_id = environment.user_id;
-        this.messageService
-            .getMessages(this.message_id)
-            .valueChanges()
-            .subscribe(messages => {
-                this.messages = messages;
-            });
 
-        this.messageService
-            .getMessage(this.message_id)
-            .valueChanges()
-            .subscribe(message => console.log(message));
+        // this.messageService
+        //     .getMessage(this.message_id)
+        //     .valueChanges()
+        //     .subscribe(message => console.log(message));
 
         this.getContactList();
     }
@@ -57,6 +51,16 @@ export class MessagesComponent implements OnInit {
                             .valueChanges()
                             .subscribe(contact => {
                                 contact['message_id'] = this.getMessageIdFromContact(contact['message_ids'], user['message_ids']);
+
+                                this.getLatestMessage(contact['message_id'])
+                                    .then(response => {
+                                        console.log(response);
+                                        contact['latest_message'] = response;
+                                    })
+                                    .catch(err => {
+                                       console.log(err);
+                                    });
+
                                 delete contact['message_ids'];
                                 const int = this.getArrayColumnSearch('message_id', contact['message_id'], this.contact_list);
                                 if (int > -1) {
@@ -68,6 +72,26 @@ export class MessagesComponent implements OnInit {
                     });
                 }
             });
+    }
+
+    getMessages(mid: String): void {
+        this.messageService
+            .getMessages(mid)
+            .valueChanges()
+            .subscribe(messages => {
+                this.messages = messages;
+            });
+    }
+
+    private getLatestMessage(mid: String) {
+        return this.messageService
+            .getLatestMessage(mid)
+            .stateChanges()
+            .toPromise();
+            // .valueChanges()
+            // .subscribe(msg => {
+            //     return msg;
+            // });
     }
 
     private getMessageIdFromContact(contact_messages: String[], user_messages: String[]): String {
