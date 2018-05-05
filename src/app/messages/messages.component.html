@@ -1,6 +1,10 @@
+<pre>{{ user_number | json }}</pre>
 <pre>{{ messages | json }}</pre>
-<input type="text" placeholder="Recipient number">
+<input type="text" placeholder="Recipient number" [(ngModel)]="recipient_number">
 <br>
-<textarea></textarea>
+<textarea [(ngModel)]="message"></textarea>
 <br>
-<button>Send Message</button>
+<button
+	(click)="sendMessage()">
+	Send Message
+</button>
