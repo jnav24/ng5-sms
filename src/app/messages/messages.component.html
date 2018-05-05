@@ -1,4 +1,4 @@
-<pre>{{ user_number | json }}</pre>
+<pre>{{ contact_list | json }}</pre>
 <pre>{{ messages | json }}</pre>
 <input type="text" placeholder="Recipient number" [(ngModel)]="recipient_number">
 <br>
@@ -8,3 +8,8 @@
 	(click)="sendMessage()">
 	Send Message
 </button>
+
+
+<ul>
+	<li *ngFor="let contact of contact_list">{{ contact.first_name }} {{ contact.last_name }}</li>
+</ul>

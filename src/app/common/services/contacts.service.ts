@@ -7,5 +7,7 @@ export class ContactsService {
 
     getAllContacts() {}
 
-    getContact() {}
+    getContact(contact_id) {
+        return this.af.doc(`contacts/${contact_id}`);
+    }
 }

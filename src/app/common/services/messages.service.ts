@@ -8,9 +8,11 @@ export class MessagesService {
       this.af.firestore.settings({timestampsInSnapshots: true});
   }
 
+  getMessage(message_id) {
+      return this.af.doc(`/messages/${message_id}`).collection('conversation', ref => ref.where('message', '==', 'hello'));
+  }
+
   getMessages(message_id) {
-      console.log(this.af.collection('messages').doc(`${message_id}`).collection('conversation'));
-      console.log(this.af.doc(`/messages/${message_id}`).collection('conversation'));
       return this.af.collection('messages').doc(`${message_id}`).collection('conversation');
   }
 

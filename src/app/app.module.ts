@@ -19,6 +19,7 @@ import {AngularFirestore} from 'angularfire2/firestore';
 import {MessagesService} from '@app/common/services/messages.service';
 import {ControlsService} from '@app/common/services/controls.service';
 import {ContactsService} from '@app/common/services/contacts.service';
+import {UserService} from '@app/common/services/user.service';
 
 // Components
 import { AppComponent } from '@app/app.component';
@@ -43,7 +44,8 @@ import { MessagesComponent } from '@app/messages/messages.component';
       AngularFirestore,
       ContactsService,
       ControlsService,
-      MessagesService
+      MessagesService,
+      UserService
   ],
   bootstrap: [AppComponent]
 })
