@@ -45,3 +45,4 @@ Thumbs.db
 
 # JN
 src/app/config/firebase.config.ts
+src/app/config/environment.config.ts

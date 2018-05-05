@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore} from 'angularfire2/firestore';
+import {environment} from '@app/config/environment.config';
 
 @Injectable()
 export class ControlsService {
@@ -12,7 +13,7 @@ export class ControlsService {
     private getTwilioNumberFromFirestore() {
         this.af
             .collection(`/controls`)
-            .doc('NehjULdopYgLs7k7sNvt')
+            .doc(environment.twilio_id)
             .valueChanges()
             .subscribe(twilio => {
                 this.twilio = twilio;

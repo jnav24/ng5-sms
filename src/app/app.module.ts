@@ -18,6 +18,7 @@ import {AngularFirestore} from 'angularfire2/firestore';
 // Services
 import {MessagesService} from '@app/common/services/messages.service';
 import {ControlsService} from '@app/common/services/controls.service';
+import {ContactsService} from '@app/common/services/contacts.service';
 
 // Components
 import { AppComponent } from '@app/app.component';
@@ -40,6 +41,7 @@ import { MessagesComponent } from '@app/messages/messages.component';
       AngularFireDatabase,
       AngularFireAuth,
       AngularFirestore,
+      ContactsService,
       ControlsService,
       MessagesService
   ],
