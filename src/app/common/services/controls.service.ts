@@ -3,7 +3,7 @@ import {AngularFirestore} from 'angularfire2/firestore';
 
 @Injectable()
 export class ControlsService {
-    private twilio_number: String;
+    private twilio;
 
     constructor(private af: AngularFirestore) {
         this.getTwilioNumberFromFirestore();
@@ -14,12 +14,12 @@ export class ControlsService {
             .collection(`/controls`)
             .doc('NehjULdopYgLs7k7sNvt')
             .valueChanges()
-            .subscribe(number => {
-                this.twilio_number = number.twilio_number;
+            .subscribe(twilio => {
+                this.twilio = twilio;
             });
     }
 
     getTwilioNumber() {
-        return this.twilio_number;
+        return this.twilio.twilio_number;
     }
 }
