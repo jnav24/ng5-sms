@@ -1,3 +1,193 @@
-p {
-	color: #000;
+@import '../../assets/styles/imports';
+
+$height: 600px;
+$main-color: #1787FB;
+
+section {
+	background: #fff;
+	margin: 0 auto;
+	width: 1000px;
+
+	@include box-shadow(0 0 5px rgba(#000, 0.2));
+	@include box-sizing(border-box);
+	@include clearfix;
+
+	.message-list {
+		list-style-type: none;
+		margin: 0;
+		overflow: auto;
+		padding: 0;
+		text-align: left;
+
+		li {
+			border-bottom: 1px solid map-get($colors, x-light-grey);
+			cursor: pointer;
+			padding: 10px;
+
+			&:hover {
+				background: darken(#fff, 5%);
+			}
+
+			&.selected {
+				background: $main-color;
+
+				p, p.message-date, p.message-latest {
+					color: #fff;
+				}
+			}
+
+			p {
+				margin: 0;
+
+				&.message {
+					&-name {
+						font-size: pxtoem(13);
+					}
+
+					&-date {
+						color: map-get($colors, light-grey);
+						font-size: pxtoem(9);
+					}
+
+					&-latest {
+						color: map-get($colors, mid-grey);
+						font-size: pxtoem(11);
+					}
+				}
+			}
+		}
+	}
+
+	.message-col {
+		@include colgriduneven(9, 2, true, 2);
+
+		height: $height;
+		overflow: hidden;
+		position: relative;
+
+		&:nth-of-type(1) {
+			//background: #900;
+			z-index: 2;
+			@include box-shadow(3px 0 4px rgba(#000, 0.1));
+		}
+		&:nth-of-type(2) {
+			//background: cyan;
+		}
+
+		header, article, footer {
+			width: 100%;
+			@include box-sizing(border-box);
+		}
+
+		header {
+			background: map-get($colors, x-light-grey);
+			height: $height/10;
+			padding: 10px;
+
+			p {
+				margin: 0;
+				padding: 0;
+
+				&.contact-name {
+					font-size: pxtoem(16);
+				}
+
+				&.contact-number {
+					color: lighten(#000, 25%);
+					font-size: pxtoem(12);
+				}
+			}
+		}
+
+		article {
+			height: $height/1.25;
+			padding: 0 15px;
+		}
+
+		footer {
+			height: $height/10;
+			padding: 10px;
+
+			textarea, button {
+				display: inline-block;
+				vertical-align: middle;
+			}
+
+			textarea {
+				border-color: map-get($colors, x-light-grey);
+				height: 35px;
+				resize: none;
+				width: 90%;
+				@include border-radius(10px);
+			}
+
+			button {
+				border: 0;
+				height: 39px;
+				width: 8%;
+			}
+		}
+	}
+
+	.message-chat {
+		margin-bottom: 10px;
+
+		.message-chat-bubble {
+			display: inline-block;
+			max-width: 45%;
+			padding: 5px 10px;
+			width: auto;
+			@include border-radius(10px);
+		}
+
+		&.message-received {
+			text-align: left;
+
+			.message-chat-bubble {
+				background: map-get($colors, x-light-grey);
+
+				p {
+					&.message {
+						color: darken(map-get($colors, x-light-grey), 35%);
+					}
+
+					&.date {
+						color: darken(map-get($colors, x-light-grey), 20%);
+					}
+				}
+			}
+		}
+
+		&.message-sent {
+			text-align: right;
+
+			.message-chat-bubble {
+				background: $main-color;
+
+				p {
+					&.message {
+						color: #fff;
+					}
+
+					&.date {
+						color: darken(#fff, 10%);
+					}
+				}
+			}
+		}
+
+		p {
+			margin: 0;
+			padding: 0;
+
+			&.message {
+				font-size: pxtoem(13);
+				font-weight: 300;
+			}
+
+			&.date {
+				font-size: pxtoem(9);
+			}
+		}
+	}
 }

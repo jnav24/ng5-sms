@@ -1,25 +1,32 @@
 <section>
-	<aside>
-		<ul>
+	<article class="message-col">
+		<ul class="message-list">
 			<li
 				class="message message-contact"
-				*ngFor="let contact of contact_list"
-				[ngClass]="{'message-unread': contact.latest_message?.state === 'unread'}"
-				(click)="getContactMessages(contact.message_id)">
-				{{ contact.first_name }} {{ contact.last_name }}
-				<p>{{ contact.latest_message?.message }}</p>
-				<p>{{ contact.latest_message?.created | amTimeAgo }}</p>
+				*ngFor="let contact of contact_list; let int = index"
+				[ngClass]="{'message-unread': contact.latest_message?.state === 'unread','selected': contact.selected}"
+				(click)="getContactMessages(contact.message_id, int)">
+				<p class="message-name">{{ contact.first_name }} {{ contact.last_name }}</p>
+				<p class="message-latest">{{ contact.latest_message?.message }}</p>
+				<p class="message-date">{{ contact.latest_message?.created | amTimeAgo }}</p>
 			</li>
 		</ul>
-	</aside>
+	</article>
 
-	<article>
-		<header>{{ recipient_number }}</header>
+	<article class="message-col">
+		<header>
+			<p class="contact-name">Full Name</p>
+			<p class="contact-number">{{ recipient_number }}</p>
+		</header>
 
-		<article>
-			<div *ngFor="let message of messages | async">
-				<p>{{ message.message }}</p>
-				<p>{{ message.created | amTimeAgo }}</p>
+		<article id="message-container">
+			<div class="message-chat"
+				 *ngFor="let message of messages | async"
+				 [ngClass]="{'message-received': message.state !== 'sent', 'message-sent': message.state === 'sent'}">
+				<div class="message-chat-bubble">
+					<p class="message">{{ message.message }}</p>
+					<p class="date">{{ message.created | amTimeAgo }}</p>
+				</div>
 			</div>
 		</article>
 
@@ -27,11 +34,13 @@
 			<textarea [(ngModel)]="message"></textarea>
 			<button
 				(click)="sendMessage()">
-				Send Message
+				Send
 			</button>
 		</footer>
 	</article>
 </section>
 
-<pre>{{ contact_list | json }}</pre>
-<pre>{{ messages | async | json }}</pre>
+<div class="debug">
+	<pre>{{ contact_list | json }}</pre>
+	<pre>{{ messages | async | json }}</pre>
+</div>

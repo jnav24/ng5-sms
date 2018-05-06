@@ -1,0 +1,5 @@
+.debug {
+	color: lighten(#000, 50%);
+	font-size: 0.75em;
+	@include posa(0,n,n,0);
+}

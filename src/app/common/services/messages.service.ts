@@ -14,7 +14,7 @@ export class MessagesService {
     }
 
     getMessages(message_id) {
-      return this.af.collection('messages').doc(`${message_id}`).collection('conversation');
+      return this.af.collection('messages').doc(`${message_id}`).collection('conversation', ref => ref.orderBy('created', 'asc'));
     }
 
     saveMessage(send_to, send_from, message, message_id) {

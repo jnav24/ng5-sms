@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+@import './assets/styles/imports';
+
+body {
+	background: map-get($colors, x-light-grey);
+	font: {
+		family: 'Open Sans', SansSerif;
+		size: 16px;
+	}
+}

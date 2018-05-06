@@ -20,6 +20,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     messages;
     recipient_number: String;
     message: String;
+    selected_int = 0;
     subscription_contacts;
 
     constructor(private messageService: MessagesService,
@@ -73,9 +74,15 @@ export class MessagesComponent implements OnInit, OnDestroy {
             });
     }
 
-    getContactMessages(mid: String): void {
+    getContactMessages(mid: String, int: number): void {
         this.getMessages(mid);
         this.getContactByMessageId(mid);
+        this.contact_list[this.selected_int].selected = false;
+        this.contact_list[int].selected = true;
+        this.selected_int = int;
+        setTimeout(() => {
+            this.setScrollBar();
+        }, 500);
     }
 
     private getMessages(mid: String): void {
@@ -111,5 +118,13 @@ export class MessagesComponent implements OnInit, OnDestroy {
         return search.map(element => {
             return element[column];
         }).indexOf(find);
+    }
+
+    private setScrollBar() {
+        const element = document.getElementById('message-container');
+
+        if (typeof element !== 'undefined' && element !== null) {
+            element.scrollTop = element.scrollHeight;
+        }
     }
 }
