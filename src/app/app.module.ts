@@ -5,6 +5,7 @@ import {RouterModule} from '@angular/router';
 import {AngularFireModule} from 'angularfire2';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
+import {MomentModule} from 'angular2-moment';
 
 // Config
 import { RouterConfig } from '@app/config/router.config';
@@ -36,6 +37,7 @@ import { MessagesComponent } from '@app/messages/messages.component';
       BrowserModule,
       FormsModule,
       HttpModule,
+      MomentModule,
       RouterModule.forRoot(RouterConfig),
   ],
   providers: [

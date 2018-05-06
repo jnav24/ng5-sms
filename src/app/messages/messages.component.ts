@@ -5,6 +5,7 @@ import {ContactsService} from '@app/common/services/contacts.service';
 import {environment} from '@app/config/environment.config';
 import {UserService} from '@app/common/services/user.service';
 import {Observable} from 'rxjs/Observable';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-messages',
@@ -55,7 +56,8 @@ export class MessagesComponent implements OnInit {
 
                                 this.getLatestMessage(contact['message_id'])
                                     .subscribe(msg => {
-                                        contact['latest_message'] = msg;
+                                        contact['latest_message'] = msg.shift();
+                                        contact['latest_message']['created'] = moment.unix(contact['latest_message']['created']);
                                     });
 
                                 delete contact['message_ids'];

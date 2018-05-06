@@ -11,7 +11,13 @@
 
 
 <ul>
-	<li *ngFor="let contact of contact_list" (click)="getMessages(contact.message_id)">
+	<li
+		class="message message-contact"
+		*ngFor="let contact of contact_list"
+		[ngClass]="{'message-unread': contact.latest_message?.state === 'unread'}"
+		(click)="getMessages(contact.message_id)">
 		{{ contact.first_name }} {{ contact.last_name }}
+		<p>{{ contact.latest_message?.message }}</p>
+		<p>{{ contact.latest_message?.created | amTimeAgo }}</p>
 	</li>
 </ul>
