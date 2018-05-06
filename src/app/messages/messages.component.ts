@@ -4,6 +4,7 @@ import {ControlsService} from '@app/common/services/controls.service';
 import {ContactsService} from '@app/common/services/contacts.service';
 import {environment} from '@app/config/environment.config';
 import {UserService} from '@app/common/services/user.service';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-messages',
@@ -53,12 +54,8 @@ export class MessagesComponent implements OnInit {
                                 contact['message_id'] = this.getMessageIdFromContact(contact['message_ids'], user['message_ids']);
 
                                 this.getLatestMessage(contact['message_id'])
-                                    .then(response => {
-                                        console.log(response);
-                                        contact['latest_message'] = response;
-                                    })
-                                    .catch(err => {
-                                       console.log(err);
+                                    .subscribe(msg => {
+                                        contact['latest_message'] = msg;
                                     });
 
                                 delete contact['message_ids'];
@@ -83,15 +80,10 @@ export class MessagesComponent implements OnInit {
             });
     }
 
-    private getLatestMessage(mid: String) {
+    private getLatestMessage(mid: String): Observable<any> {
         return this.messageService
             .getLatestMessage(mid)
-            .stateChanges()
-            .toPromise();
-            // .valueChanges()
-            // .subscribe(msg => {
-            //     return msg;
-            // });
+            .valueChanges();
     }
 
     private getMessageIdFromContact(contact_messages: String[], user_messages: String[]): String {
