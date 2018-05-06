@@ -1,4 +1,4 @@
-<section>
+<section class="theme theme-spector">
 	<article class="message-col">
 		<ul class="message-list">
 			<li
@@ -13,10 +13,10 @@
 		</ul>
 	</article>
 
-	<article class="message-col">
+	<article *ngIf="recipient" class="message-col">
 		<header>
-			<p class="contact-name">Full Name</p>
-			<p class="contact-number">{{ recipient_number }}</p>
+			<p class="contact-name">{{ recipient.first_name }} {{ recipient.last_name }}</p>
+			<p class="contact-number">{{ recipient.phone[0].number }}</p>
 		</header>
 
 		<article id="message-container">
@@ -37,6 +37,14 @@
 				Send
 			</button>
 		</footer>
+	</article>
+
+	<article *ngIf="!recipient" class="message-col message-empty">
+		<div class="chat-container">
+			<div class="chat-icon-foreground"></div>
+			<div class="chat-icon-background"></div>
+			<h3 class="chat-icon-message">Please choose a contact.</h3>
+		</div>
 	</article>
 </section>
 

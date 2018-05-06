@@ -18,7 +18,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     user_id: String;
     message_id: String = '8u6qOhvrYFWQqz0eM03Y';
     messages;
-    recipient_number: String;
+    recipient;
     message: String;
     selected_int = 0;
     subscription_contacts;
@@ -39,7 +39,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
     sendMessage() {
         const user_number = this.controlsService.getTwilioNumber();
-        this.messageService.saveMessage(user_number, this.recipient_number, this.message, this.message_id);
+        this.messageService.saveMessage(user_number, this.recipient.phone[0].number, this.message, this.message_id);
     }
 
     private getContactList() {
@@ -99,7 +99,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
     private getContactByMessageId(mid: String): void {
         const int = this.getArrayColumnSearch('message_id', mid, this.contact_list);
-        this.recipient_number = this.contact_list[int].phone[0].number;
+        this.recipient = this.contact_list[int];
     }
 
     private getLatestMessage(mid: String): Observable<any> {

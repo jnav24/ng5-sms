@@ -31,6 +31,10 @@ section {
 			&.selected {
 				background: $main-color;
 
+				&:hover {
+					background: $main-color;
+				}
+
 				p, p.message-date, p.message-latest {
 					color: #fff;
 				}
@@ -66,15 +70,20 @@ section {
 		position: relative;
 
 		&:nth-of-type(1) {
-			//background: #900;
 			z-index: 2;
 			@include box-shadow(3px 0 4px rgba(#000, 0.1));
 		}
+
 		&:nth-of-type(2) {
 			//background: cyan;
 		}
 
+		&.message-empty {
+			background: lighten(#000, 17%);
+		}
+
 		header, article, footer {
+			position: relative;
 			width: 100%;
 			@include box-sizing(border-box);
 		}
@@ -83,6 +92,8 @@ section {
 			background: map-get($colors, x-light-grey);
 			height: $height/10;
 			padding: 10px;
+			z-index: 2;
+			@include box-shadow(4px 0px 5px rgba(0,0,0,0.2));
 
 			p {
 				margin: 0;
@@ -187,6 +198,121 @@ section {
 
 			&.date {
 				font-size: pxtoem(9);
+			}
+		}
+	}
+}
+
+.chat-container {
+	height: 125px;
+	margin-top: -62.5px;
+	position: relative;
+	top: 40%;
+
+	.chat-icon {
+		&-foreground, &-background {
+			height: 100px;
+			width: 100px;
+			@include border-radius(10px);
+			@include posa(0,n,n,0);
+
+			&:after {
+				content: '';
+				display: block;
+				@include posa(n,n,-25px,55px);
+				@include transform(rotate(180deg));
+			}
+		}
+
+		&-foreground {
+			background: map-get($colors, x-light-grey);
+			left: 50%;
+			margin-left: -50px;
+			z-index: 2;
+
+			&:after {
+				@include triangle-corner(25px, bottomRight, map-get($colors, x-light-grey));
+			}
+		}
+
+		&-background {
+			background: map-get($colors, light-grey);
+			left: 44%;
+			top: 5px;
+			z-index: 1;
+
+			&:after {
+				@include triangle-corner(25px, bottomRight, map-get($colors, light-grey));
+			}
+		}
+
+		&-message {
+			color: map-get($colors, light-grey);
+			font-size: pxtoem(16);
+			height: 15px;
+			margin: 0;
+			padding: 0;
+			text-align: center;
+			width: 100%;
+			@include posa(n,n,-25px,0);
+		}
+	}
+}
+
+.theme {
+	&-spector {
+		.message-list {
+			li {
+				border-color: lighten(#000, 30%);
+
+				&:hover {
+					background: lighten(#000, 30%);
+				}
+			}
+		}
+
+		.message-col {
+			&:nth-of-type(1) {
+				background: lighten(#000, 20%);
+				@include box-shadow(0 0 0 rgba(#000, 0));
+
+				p {
+					margin: 0;
+
+					&.message {
+						&-name {
+							color: #fff;
+						}
+
+						&-date {
+							color: map-get($colors, mid-grey);
+						}
+
+						&-latest {
+							color: map-get($colors, light-grey);
+						}
+					}
+				}
+			}
+
+			&.message-empty {
+				background: #fff;
+			}
+		}
+
+		.chat-container {
+			.chat-icon {
+				&-foreground {
+					display: none;
+				}
+
+				&-background {
+					//display: none;
+				}
+
+				&-message {
+					color: map-get($colors, light-grey);
+				}
 			}
 		}
 	}
