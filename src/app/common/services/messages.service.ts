@@ -13,10 +13,6 @@ export class MessagesService {
             .collection('conversation', ref => ref.orderBy('created', 'desc').limit(1));
     }
 
-    getMessage(message_id) {
-      return this.af.doc(`/messages/${message_id}`).collection('conversation', ref => ref.where('message', '==', 'hello'));
-    }
-
     getMessages(message_id) {
       return this.af.collection('messages').doc(`${message_id}`).collection('conversation');
     }

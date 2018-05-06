@@ -14,6 +14,7 @@ import * as moment from 'moment';
 })
 export class MessagesComponent implements OnInit, OnDestroy {
     contact_list = [];
+    conversation;
     user_id: String;
     message_id: String = '8u6qOhvrYFWQqz0eM03Y';
     messages;
