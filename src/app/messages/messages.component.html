@@ -1,5 +1,3 @@
-<pre>{{ contact_list | json }}</pre>
-<pre>{{ messages | async | json }}</pre>
 <input type="text" placeholder="Recipient number" [(ngModel)]="recipient_number">
 <br>
 <textarea [(ngModel)]="message"></textarea>
@@ -9,15 +7,17 @@
 	Send Message
 </button>
 
-
 <ul>
 	<li
 		class="message message-contact"
 		*ngFor="let contact of contact_list"
 		[ngClass]="{'message-unread': contact.latest_message?.state === 'unread'}"
-		(click)="getMessages(contact.message_id)">
+		(click)="getContactMessages(contact.message_id)">
 		{{ contact.first_name }} {{ contact.last_name }}
 		<p>{{ contact.latest_message?.message }}</p>
 		<p>{{ contact.latest_message?.created | amTimeAgo }}</p>
 	</li>
 </ul>
+
+<pre>{{ contact_list | json }}</pre>
+<pre>{{ messages | async | json }}</pre>

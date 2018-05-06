@@ -28,12 +28,6 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.user_id = environment.user_id;
-
-        // this.messageService
-        //     .getMessage(this.message_id)
-        //     .valueChanges()
-        //     .subscribe(message => console.log(message));
-
         this.subscription_contacts = this.getContactList();
     }
 
@@ -78,7 +72,12 @@ export class MessagesComponent implements OnInit, OnDestroy {
             });
     }
 
-    getMessages(mid: String): void {
+    getContactMessages(mid: String): void {
+        this.getMessages(mid);
+        this.getContactByMessageId(mid);
+    }
+
+    private getMessages(mid: String): void {
         this.messages = this.messageService
             .getMessages(mid)
             .valueChanges()
@@ -88,6 +87,11 @@ export class MessagesComponent implements OnInit, OnDestroy {
                     return message;
                 });
             });
+    }
+
+    private getContactByMessageId(mid: String): void {
+        const int = this.getArrayColumnSearch('message_id', mid, this.contact_list);
+        this.recipient_number = this.contact_list[int].phone[0].number;
     }
 
     private getLatestMessage(mid: String): Observable<any> {
