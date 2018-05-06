@@ -79,11 +79,14 @@ export class MessagesComponent implements OnInit, OnDestroy {
     }
 
     getMessages(mid: String): void {
-        this.messageService
+        this.messages = this.messageService
             .getMessages(mid)
             .valueChanges()
-            .subscribe(messages => {
-                this.messages = messages;
+            .map(messages => {
+                return messages.map(message => {
+                    message['created'] = moment.unix(message['created']);
+                    return message;
+                });
             });
     }
 

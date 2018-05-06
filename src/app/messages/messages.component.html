@@ -1,5 +1,5 @@
 <pre>{{ contact_list | json }}</pre>
-<pre>{{ messages | json }}</pre>
+<pre>{{ messages | async | json }}</pre>
 <input type="text" placeholder="Recipient number" [(ngModel)]="recipient_number">
 <br>
 <textarea [(ngModel)]="message"></textarea>
