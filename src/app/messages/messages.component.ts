@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {MessagesService} from '@app/common/services/messages.service';
 import {ControlsService} from '@app/common/services/controls.service';
 import {ContactsService} from '@app/common/services/contacts.service';
@@ -12,13 +12,14 @@ import * as moment from 'moment';
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.css']
 })
-export class MessagesComponent implements OnInit {
+export class MessagesComponent implements OnInit, OnDestroy {
     contact_list = [];
     user_id: String;
     message_id: String = '8u6qOhvrYFWQqz0eM03Y';
     messages;
     recipient_number: String;
     message: String;
+    subscription_contacts;
 
     constructor(private messageService: MessagesService,
                 private controlsService: ControlsService,
@@ -33,7 +34,11 @@ export class MessagesComponent implements OnInit {
         //     .valueChanges()
         //     .subscribe(message => console.log(message));
 
-        this.getContactList();
+        this.subscription_contacts = this.getContactList();
+    }
+
+    ngOnDestroy() {
+        this.subscription_contacts.unsubscribe();
     }
 
     sendMessage() {
