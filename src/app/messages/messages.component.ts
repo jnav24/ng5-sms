@@ -40,7 +40,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
     sendMessage() {
         this.messageService
-            .saveMessage(this.user_id, this.recipient['id'], this.message, this.message_id);
+            .saveMessage(this.user_id, this.recipient['id'], this.message, this.recipient['message_id']);
         this.message = '';
     }
 
