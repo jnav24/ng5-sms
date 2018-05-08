@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore} from 'angularfire2/firestore';
+import * as moment from 'moment';
 
 @Injectable()
 export class MessagesService {
@@ -14,21 +15,20 @@ export class MessagesService {
     }
 
     getMessages(message_id) {
-      return this.af.collection('messages').doc(`${message_id}`).collection('conversation', ref => ref.orderBy('created', 'asc'));
+        return this.af.collection('messages').doc(`${message_id}`).collection('conversation', ref => ref.orderBy('created', 'asc'));
     }
 
-    saveMessage(send_to, send_from, message, message_id) {
-      const user_id = 1;
-      const contact_id = 2;
-
-      this.af
-          .collection('messages')
-          .doc(`${message_id}`)
-          .collection('conversation')
-          .add({
-             to: user_id,
-             from: contact_id,
-             message: message
-          });
+    saveMessage(user_id, contact_id, message, message_id) {
+        this.af
+            .collection('messages')
+            .doc(`${message_id}`)
+            .collection('conversation')
+            .add({
+                to: user_id,
+                from: contact_id,
+                message: message,
+                state: 'sent',
+                created: moment().unix().toString()
+            });
     }
 }

@@ -5,6 +5,7 @@ import {ContactsService} from '@app/common/services/contacts.service';
 import {environment} from '@app/config/environment.config';
 import {UserService} from '@app/common/services/user.service';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 import * as moment from 'moment';
 
 @Component({
@@ -38,8 +39,9 @@ export class MessagesComponent implements OnInit, OnDestroy {
     }
 
     sendMessage() {
-        const user_number = this.controlsService.getTwilioNumber();
-        this.messageService.saveMessage(user_number, this.recipient.phone[0].number, this.message, this.message_id);
+        this.messageService
+            .saveMessage(this.user_id, this.recipient['id'], this.message, this.message_id);
+        this.message = '';
     }
 
     private getContactList() {
@@ -53,6 +55,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
                             .getContact(contact_id)
                             .valueChanges()
                             .subscribe(contact => {
+                                contact['id'] = contact_id;
                                 contact['message_id'] = this.getMessageIdFromContact(contact['message_ids'], user['message_ids']);
 
                                 this.getLatestMessage(contact['message_id'])
