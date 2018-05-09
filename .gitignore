@@ -46,3 +46,6 @@ Thumbs.db
 # JN
 src/app/config/firebase.config.ts
 src/app/config/environment.config.ts
+functions/node_modules/
+functions/lib/
+functions/firebase-debug.log

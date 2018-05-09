@@ -24,8 +24,8 @@ export class MessagesService {
             .doc(`${message_id}`)
             .collection('conversation')
             .add({
-                to: user_id,
-                from: contact_id,
+                from: user_id,
+                to: contact_id,
                 message: message,
                 state: 'sent',
                 created: moment().unix().toString()
