@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import {MessagesService} from '@app/common/services/messages.service';
 import {ControlsService} from '@app/common/services/controls.service';
 import {ContactsService} from '@app/common/services/contacts.service';
+import {MessagesInterface} from '@app/messages/messages.model';
 import {environment} from '@app/config/environment.config';
 import {UserService} from '@app/common/services/user.service';
 import {Observable} from 'rxjs/Observable';
@@ -17,8 +18,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     contact_list = [];
     conversation;
     user_id: String;
-    message_id: String = '8u6qOhvrYFWQqz0eM03Y';
-    messages;
+    messages: Observable<any>;
     recipient;
     message: String;
     selected_int = 0;
@@ -39,9 +39,18 @@ export class MessagesComponent implements OnInit, OnDestroy {
     }
 
     sendMessage() {
+        const message: MessagesInterface = {
+            to: this.recipient['id'],
+            from: this.user_id,
+            message: this.message,
+            state: 'sent',
+            created: moment().unix().toString()
+        };
+
         this.messageService
-            .saveMessage(this.user_id, this.recipient['id'], this.message, this.recipient['message_id']);
+            .saveMessage(this.recipient['message_id'], message);
         this.message = '';
+        this.setScrollBar();
     }
 
     private getContactList() {
@@ -49,7 +58,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
             .getContactList(this.user_id)
             .valueChanges()
             .subscribe(user => {
-                if (typeof user['contact_ids'] !== 'undefined' && user['contact_ids'].length) {
+                if (this.validateUser(user)) {
                     user['contact_ids'].map(contact_id => {
                         this.contactsService
                             .getContact(contact_id)
@@ -129,5 +138,9 @@ export class MessagesComponent implements OnInit, OnDestroy {
         if (typeof element !== 'undefined' && element !== null) {
             element.scrollTop = element.scrollHeight;
         }
+    }
+
+    private validateUser(user) {
+        return user && Object.keys(user).length && typeof user['contact_ids'] !== 'undefined' && user['contact_ids'].length;
     }
 }
