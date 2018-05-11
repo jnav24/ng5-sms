@@ -2,7 +2,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as Twilio from 'twilio';
 
-admin.initializeApp();
+admin.initializeApp(functions.config().firebase);
 
 async function twilioCreds() {
     try {
@@ -126,8 +126,9 @@ exports.sendSms = functions.firestore.document('messages/{message_id}/conversati
                 const twilio = new Twilio(res['twilio_account_sid'], res['twilio_auth_token']);
                 const msg = snap.data();
 
-                return admin.firestore()
-                    .doc(`contacts/${msg.to}`).get()
+                admin.firestore()
+                    .doc(`contacts/${msg.to}`)
+                    .get()
                     .then(contact => {
                         if (contact.exists) {
                             const sms = {
@@ -136,16 +137,14 @@ exports.sendSms = functions.firestore.document('messages/{message_id}/conversati
                                 body: msg['message']
                             };
 
-                            return twilio.messages.create(sms);
+                            twilio.messages.create(sms);
                         }
-
-                        return null;
                     })
                     .catch(err => {
-                        console.log('unable to get contact: ' + err);
-                        return err;
+                        const errMsg = 'unable to get contact: ';
+                        console.log(errMsg + err);
+                        throw errMsg;
                     });
             })
-            .then(message => console.log(message.sid, 'success'))
             .catch(err => console.error('unable to send sms'));
     });
