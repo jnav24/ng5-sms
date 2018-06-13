@@ -1,9 +1,36 @@
-@import './assets/styles/imports';
+/* You can add global styles to this file, and also import other style files */
 
-body {
-	background: map-get($colors, x-light-grey);
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+@import './assets/base/imports';
+
+body, html {
+	color: lighten(#000, 25%);
 	font: {
-		family: 'Open Sans', SansSerif;
+		family: 'Open Sans', sans-serif;
 		size: 16px;
-	}
+		weight: 400;
+	};
+}
+
+h2 {
+	color: #000;
+	font-weight: 300;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.mat-focused .mat-input-placeholder {
+	color: $primary !important;
+}
+
+.mat-option.mat-selected.mat-primary,.mat-primary .mat-option.mat-selected{
+	color: #fff !important;
+}
+
+.mat-input-underline .mat-input-ripple {
+	background: $primary;
 }

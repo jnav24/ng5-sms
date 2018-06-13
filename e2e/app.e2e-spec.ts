@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('ng6-sms App', () => {
+describe('ng5-signin App', () => {
   let page: AppPage;
 
   beforeEach(() => {

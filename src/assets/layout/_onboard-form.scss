@@ -1,0 +1,105 @@
+.form {
+	background: #fff;
+	font-size: 14px;
+	margin: 0 auto;
+	padding: 20px;
+	text-align: left;
+	width: 250px;
+
+	.checkbox {
+		font-size: 13px;
+	}
+
+	button {
+		background: $primary;
+		color: #fff;
+		font-weight: 300;
+		padding: 10px 0;
+		@include border-radius(20px);
+
+		&.disabled {
+			background: rgba(#ccc, 0.4);
+		}
+	}
+}
+
+.copy {
+	background: $primary;
+	color: #fff;
+	font-size: 13px;
+	margin: 0;
+	padding: 10px 0;
+	text-align: center;
+	width: 100%;
+
+	&.extra {
+		bottom: -80px;
+	}
+
+	a, button {
+		background: none;
+		border: 0;
+		color: $secondary;
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+.error {
+	background: #E54D42;
+	color: #fff;
+	font-size: 12px;
+	margin-bottom: 15px;
+	padding: 10px;
+	text-align: center;
+}
+
+.logo {
+	&__container {
+		margin: 0 auto 20px;
+		position: relative;
+		@include circle(100px, $secondary);
+	}
+
+	.logo-lock {
+		$color: #fff;
+		$bd: 3px;
+		$border: $bd solid $color;
+
+		&__container {
+			@include posa(50%,n,n,50%);
+			@include transform(translate(-50%, -50%));
+		}
+
+		&__body {
+			$size: 33px;
+			background: $color;
+			border: $border;
+			height: 24px;
+			width: $size;
+			@include border-radius(5px);
+		}
+
+		&__head {
+			border: $border;
+			height: 18px;
+			left: 50%;
+			position: relative;
+			width: 60%;
+			@include border-radius(14px 14px 0 0);
+			@include transform(translate(-50%, $bd));
+		}
+
+		&__key {
+			background: $secondary;
+			height: 15px;
+			width: 6px;
+			@include border-radius(10px);
+			@include posa(n,n,7px,50%);
+			@include transform(translateX(-50%));
+		}
+	}
+}

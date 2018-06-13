@@ -1,0 +1,63 @@
+<div class="form"
+	 [formGroup]="signup">
+	<div *ngIf="!allowRegister">
+		<h2 class="text-center">Oh no!</h2>
+		<p>Registration is temporarily unavailable. Please check again later.</p>
+	</div>
+
+	<div *ngIf="allowRegister">
+		<div class="logo logo__container">
+			<div class="logo-lock__container">
+				<div class="logo-lock__head"></div>
+				<div class="logo-lock__key"></div>
+				<div class="logo-lock__body"></div>
+			</div>
+		</div>
+
+		<h2 class="text-center">Register</h2>
+
+		<div class="error" *ngIf="error.length">
+			{{ error }}
+		</div>
+
+		<mat-form-field class="fw-full">
+			<input matInput placeholder="First Name" formControlName="first_name">
+		</mat-form-field>
+
+		<mat-form-field class="fw-full">
+			<input matInput placeholder="Last Name" formControlName="last_name">
+		</mat-form-field>
+
+		<mat-form-field class="fw-full">
+			<input matInput placeholder="Email" formControlName="email">
+		</mat-form-field>
+
+		<mat-form-field class="fw-full">
+			<input matInput placeholder="Password"
+				   type="password"
+				   [formGroup]="signup"
+				   formControlName="password">
+		</mat-form-field>
+
+		<mat-form-field
+			class="fw-full">
+			<input matInput placeholder="Confirm Password"
+				   type="password"
+				   [formGroup]="signup"
+				   name="confirm_password"
+				   formControlName="confirm_password">
+		</mat-form-field>
+
+		<button mat-raised-button class="fw-full"
+				[ngClass]="{'disabled': !signup.valid}"
+				[disabled]="!signup.valid"
+				(click)="registerUser()">Sign Up</button>
+	</div>
+</div>
+
+<p class="copy">
+	<span>
+		Already have an account?
+		<button (click)="animateToLogin()">Login</button>
+	</span>
+</p>
