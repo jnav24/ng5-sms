@@ -24,6 +24,7 @@ import { OnboardComponent } from './onboard/onboard.component';
 import { LoginComponent } from './onboard/login/login.component';
 import { RegisterComponent } from './onboard/register/register.component';
 import { ResetPasswordComponent } from './onboard/reset-password/reset-password.component';
+import { MessagesComponent } from './messages/messages.component';
 
 // Guard
 import {DashboardAuthGuard} from '@app/dashboard/dashboard-auth.guard';
@@ -40,6 +41,9 @@ import {UsersService} from '@app/common/services/users.service';
 import {LogService} from '@app/common/services/log.service';
 import {ResetPasswordService} from '@app/onboard/reset-password/reset-password.service';
 import {ControlsService} from '@app/common/services/controls.service';
+import {ContactsService} from '@app/common/services/contacts.service';
+import {MessagesService} from '@app/messages/messages.service';
+import {MomentModule} from 'angular2-moment';
 
 
 
@@ -51,6 +55,7 @@ import {ControlsService} from '@app/common/services/controls.service';
         OnboardComponent,
         LoginComponent,
         ResetPasswordComponent,
+        MessagesComponent,
     ],
     imports: [
         AngularFireModule.initializeApp(environmentConfig.firebase),
@@ -65,6 +70,7 @@ import {ControlsService} from '@app/common/services/controls.service';
         MatIconModule,
         MatMenuModule,
         MatToolbarModule,
+        MomentModule,
         ReactiveFormsModule,
         RouterModule.forRoot(RouterConfig),
     ],
@@ -82,6 +88,8 @@ import {ControlsService} from '@app/common/services/controls.service';
         LogService,
         ResetPasswordService,
         ControlsService,
+        ContactsService,
+        MessagesService,
     ],
     bootstrap: [AppComponent]
 })

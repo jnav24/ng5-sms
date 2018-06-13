@@ -3,5 +3,8 @@ $secondary: lighten(#000, 70%);
 $navHeight: 65px;
 
 $colors: (
-	primary: lighten(#000, 10%)
+	primary: lighten(#000, 10%),
+	light-grey: lighten(#000, 75%),
+	mid-grey: lighten(#000, 50%),
+	x-light-grey: #efefef,
 );
