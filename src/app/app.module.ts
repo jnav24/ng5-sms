@@ -26,6 +26,7 @@ import { LoginComponent } from './onboard/login/login.component';
 import { RegisterComponent } from './onboard/register/register.component';
 import { ResetPasswordComponent } from './onboard/reset-password/reset-password.component';
 import { MessagesComponent } from './messages/messages.component';
+import { DashboardNavComponent } from './dashboard/dashboard-nav/dashboard-nav.component';
 
 // Guard
 import {DashboardAuthGuard} from '@app/dashboard/dashboard-auth.guard';
@@ -56,6 +57,7 @@ import {MessagesService} from '@app/messages/messages.service';
         LoginComponent,
         ResetPasswordComponent,
         MessagesComponent,
+        DashboardNavComponent,
     ],
     imports: [
         AngularFireModule.initializeApp(environmentConfig.firebase),

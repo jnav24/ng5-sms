@@ -52,7 +52,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     }
 
     private getContactList() {
-        this.contactsService
+        return this.contactsService
             .getContactList(this.usersService.getUserUid())
             .valueChanges()
             .subscribe(user => {
