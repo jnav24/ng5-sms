@@ -13,12 +13,10 @@ export const RouterConfig: Route[] = [
     { path: 'reset_password', component: OnboardComponent, canActivate: [OnboardGuard] },
     {
         path: 'dashboard',
-        component: MessagesComponent,
-        // canActivate: [DashboardAuthGuard],
-        resolve: { user: UsersResolver },
-        children: [
-            { path: 'dashboard/messages', component: MessagesComponent, canActivate: [DashboardAuthGuard] }
-        ]
+        component: DashboardComponent,
+        canActivate: [DashboardAuthGuard],
+        resolve: { user: UsersResolver }
     },
+    { path: 'dashboard/messages', component: MessagesComponent, canActivate: [DashboardAuthGuard] },
     { path: '**', redirectTo: 'login' }
 ];

@@ -12,6 +12,7 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {AngularFirestore} from 'angularfire2/firestore';
+import {MomentModule} from 'angular2-moment';
 
 // Config
 import { RouterConfig } from '@app/config/router.config';
@@ -43,7 +44,6 @@ import {ResetPasswordService} from '@app/onboard/reset-password/reset-password.s
 import {ControlsService} from '@app/common/services/controls.service';
 import {ContactsService} from '@app/common/services/contacts.service';
 import {MessagesService} from '@app/messages/messages.service';
-import {MomentModule} from 'angular2-moment';
 
 
 
