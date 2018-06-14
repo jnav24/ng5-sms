@@ -25,7 +25,10 @@
 	<button mat-raised-button class="fw-full"
 			[ngClass]="{'disabled': !login.valid}"
 			(click)="logUserIn()"
-			[disabled]="!login.valid">Login</button>
+			[disabled]="!login.valid">
+		Login
+		<mat-progress-spinner mode="indeterminate" *ngIf="showLoader"></mat-progress-spinner>
+	</button>
 </div>
 
 <p class="copy extra">

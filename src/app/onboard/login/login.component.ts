@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
     @Output() animateTo: EventEmitter<String> = new EventEmitter();
     error: String = '';
     login: FormGroup;
+    showLoader = false;
 
     constructor(private fb: FormBuilder,
                 private log: LogService,
