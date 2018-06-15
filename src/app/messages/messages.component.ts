@@ -17,7 +17,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     contact_list = [];
     conversation;
     user_id: String;
-    messages: Observable<any>;
+    messages: Observable<any> | null = null;
     recipient;
     message: String;
     selected_int = 0;
@@ -52,15 +52,19 @@ export class MessagesComponent implements OnInit, OnDestroy {
     }
 
     private getContactList() {
+        /**
+         * @Todo
+         * this logic is broken.
+         * Contacts should not show in the messenger left bar unless there is a message associated
+         * there should be no errors for messages on permissions from firebase
+         */
         return this.contactsService
             .getContactList(this.usersService.getUserUid())
-            .valueChanges()
             .subscribe(user => {
                 if (this.validateUser(user)) {
                     user['contact_ids'].map(contact_id => {
                         this.contactsService
                             .getContact(contact_id)
-                            .valueChanges()
                             .subscribe(contact => {
                                 contact['id'] = contact_id;
                                 contact['message_id'] = this.getMessageIdFromContact(contact['message_ids'], user['message_ids']);

@@ -6,10 +6,37 @@ import {MessagesService} from '@app/messages/messages.service';
 import {UsersService} from '@app/common/services/users.service';
 import {ControlsService} from '@app/common/services/controls.service';
 import {ContactsService} from '@app/common/services/contacts.service';
+import {DashboardNavComponent} from '@app/dashboard/dashboard-nav/dashboard-nav.component';
+import {MatToolbarModule} from '@angular/material';
+import {LoginService} from '@app/onboard/login/login.service';
+import {Observable} from 'rxjs/Observable';
 
-class MessagesServiceStub {}
+class MessagesServiceStub {
+    getLatestMessage(mid) {
+        return Observable.create(obs => {
+            obs.next({message: 'somthing'});
+        });
+    }
+
+    getMessages(mid) {
+        return Observable.create(obs => {
+            obs.next([{message: 'somthing'}]);
+        });
+    }
+}
+class LoginServiceStub {}
 class ContactsServiceStub {
-    getContactList() {}
+    getContactList() {
+        return Observable.create(obs => {
+            obs.next([{message: 'somthing'}]);
+        });
+    }
+
+    getContact(cid) {
+        return Observable.create(obs => {
+            obs.next({message: 'somthing'});
+        });
+    }
 }
 class UsersServiceStub {
     getUserUid() {}
@@ -23,9 +50,13 @@ describe('MessagesComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ MessagesComponent ],
+            declarations: [
+                DashboardNavComponent,
+                MessagesComponent,
+            ],
             imports: [
                 FormsModule,
+                MatToolbarModule,
                 MomentModule,
                 ReactiveFormsModule
             ],
@@ -34,6 +65,7 @@ describe('MessagesComponent', () => {
                 { provide: ControlsService, useClass: ControlsServiceStub },
                 { provide: MessagesService, useClass: MessagesServiceStub },
                 { provide: UsersService, useClass: UsersServiceStub },
+                { provide: LoginService, useClass: LoginServiceStub },
             ]
         })
         .compileComponents();

@@ -3,7 +3,8 @@ import { OnboardComponent } from './onboard.component';
 import {LoginComponent} from '@app/onboard/login/login.component';
 import {RegisterComponent} from '@app/onboard/register/register.component';
 import {
-    MatButtonModule, MatCardModule, MatCheckboxModule, MatIconModule, MatInputModule, MatMenuModule, MatRippleModule,
+    MatButtonModule, MatCardModule, MatCheckboxModule, MatIconModule, MatInputModule, MatMenuModule, MatProgressSpinnerModule,
+    MatRippleModule,
     MatToolbarModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -55,6 +56,7 @@ describe('OnboardComponent', () => {
             imports: [
                 BrowserAnimationsModule,
                 FormsModule,
+                MatProgressSpinnerModule,
                 MatButtonModule,
                 MatCardModule,
                 MatCheckboxModule,

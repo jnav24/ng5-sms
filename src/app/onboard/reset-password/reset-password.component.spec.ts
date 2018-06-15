@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ResetPasswordComponent } from './reset-password.component';
 import {
-    MatButtonModule, MatCardModule, MatCheckboxModule, MatIconModule, MatInputModule, MatMenuModule, MatRippleModule,
+    MatButtonModule, MatCardModule, MatCheckboxModule, MatIconModule, MatInputModule, MatMenuModule, MatProgressSpinnerModule,
+    MatRippleModule,
     MatToolbarModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -19,6 +20,7 @@ describe('ResetPasswordComponent', () => {
             imports: [
                 FormsModule,
                 MatButtonModule,
+                MatProgressSpinnerModule,
                 MatCardModule,
                 MatCheckboxModule,
                 MatIconModule,

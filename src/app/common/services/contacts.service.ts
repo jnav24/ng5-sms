@@ -8,10 +8,10 @@ export class ContactsService {
     getAllContacts() {}
 
     getContact(contact_id) {
-        return this.af.doc(`contacts/${contact_id}`);
+        return this.af.doc(`contacts/${contact_id}`).valueChanges();
     }
 
     getContactList(uid) {
-        return this.af.doc(`/users/${uid}`);
+        return this.af.doc(`/users/${uid}`).valueChanges();
     }
 }

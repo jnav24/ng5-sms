@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RegisterComponent } from './register.component';
 import {
     MatButtonModule,
-    MatCardModule, MatCheckboxModule, MatIconModule, MatInputModule, MatMenuModule, MatRippleModule,
+    MatCardModule, MatCheckboxModule, MatIconModule, MatInputModule, MatMenuModule, MatProgressSpinnerModule, MatRippleModule,
     MatToolbarModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -44,6 +44,7 @@ describe('RegisterComponent', () => {
                 BrowserAnimationsModule,
                 FormsModule,
                 MatButtonModule,
+                MatProgressSpinnerModule,
                 MatCardModule,
                 MatCheckboxModule,
                 MatIconModule,

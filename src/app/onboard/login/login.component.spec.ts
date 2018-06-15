@@ -2,7 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
-    MatButtonModule, MatCardModule, MatCheckboxModule, MatIconModule, MatInputModule, MatMenuModule, MatRippleModule,
+    MatButtonModule, MatCardModule, MatCheckboxModule, MatIconModule, MatInputModule, MatMenuModule, MatProgressSpinnerModule,
+    MatRippleModule,
     MatToolbarModule
 } from '@angular/material';
 import {LoginService} from './login.service';
@@ -30,6 +31,7 @@ describe('LoginComponent', () => {
             imports: [
                 FormsModule,
                 MatButtonModule,
+                MatProgressSpinnerModule,
                 MatCardModule,
                 MatCheckboxModule,
                 MatIconModule,

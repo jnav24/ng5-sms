@@ -9,7 +9,7 @@ import {Location} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
     MatButtonModule, MatCardModule, MatCheckboxModule, MatIconModule, MatInputModule, MatMenuModule, MatRippleModule,
-    MatToolbarModule
+    MatToolbarModule, MatProgressSpinnerModule
 } from '@angular/material';
 import {By} from '@angular/platform-browser';
 import {RegisterComponent} from '@app/onboard/register/register.component';
@@ -17,6 +17,7 @@ import {ResetPasswordComponent} from '@app/onboard/reset-password/reset-password
 import {LoginComponent} from '@app/onboard/login/login.component';
 import {DashboardAuthGuard} from '@app/dashboard/dashboard-auth.guard';
 import {OnboardGuard} from '@app/onboard/onboard.guard';
+import {DashboardNavComponent} from '@app/dashboard/dashboard-nav/dashboard-nav.component';
 
 const routes: Route[] = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -48,11 +49,13 @@ describe('AppComponent', () => {
                 LoginComponent,
                 RegisterComponent,
                 ResetPasswordComponent,
-                DashboardComponent
+                DashboardComponent,
+                DashboardNavComponent,
             ],
             imports: [
                 FormsModule,
                 MatButtonModule,
+                MatProgressSpinnerModule,
                 MatCardModule,
                 MatCheckboxModule,
                 MatIconModule,
