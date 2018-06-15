@@ -42,12 +42,19 @@ export class LoginComponent implements OnInit {
                 });
             })
             .catch(error => {
-                const log = {
-                    level: 'error',
-                    page: 'login.logUserIn',
-                    message: error.message
-                };
-                this.log.writeLog(log);
+                const messages = ['auth/wrong-password', 'auth/user-not-found'];
+
+                if (messages.indexOf(error.code) > -1) {
+                    this.error = 'Your email and/or password is incorrect.';
+                } else {
+                    this.error = 'An unexpected error has occured. Please try again later.';
+                    const log = {
+                        level: 'error',
+                        page: 'login.logUserIn',
+                        message: error.message
+                    };
+                    this.log.writeLog(log);
+                }
             });
     }
 
