@@ -16,11 +16,18 @@ export class UsersResolver implements Resolve<UserInterface> {
        try {
            const uid = this.usersService.getUserUid().toString();
            const authenticatedUser = await new Promise(resolve => {
-               this.user = this.usersService
-                   .getUserByUid(uid)
-                   .subscribe(user => {
-                       resolve(user);
-                   });
+               const userInfo = this.usersService.getUser();
+
+               if (typeof userInfo === 'undefined' || !userInfo) {
+                   this.user = this.usersService
+                       .getUserByUid(uid)
+                       .subscribe(user => {
+                           this.usersService.setUser(user);
+                           resolve(user);
+                       });
+               } else {
+                   resolve(userInfo);
+               }
            });
 
            const auth = this.usersService.getAuth().currentUser;

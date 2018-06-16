@@ -1,23 +1,20 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {UserInterface} from '@app/common/interfaces/user.interface';
+import {UsersService} from '@app/common/services/users.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit, OnDestroy {
-    private userSubscription;
+export class DashboardComponent implements OnInit {
     user: UserInterface;
 
-    constructor(private route: ActivatedRoute) {}
+    constructor(private route: ActivatedRoute,
+                private usersService: UsersService) {}
 
     ngOnInit() {
-        this.userSubscription = this.route.data.subscribe(user => this.user = user.user);
-    }
-
-    ngOnDestroy() {
-        this.userSubscription.unsubscribe();
+        this.user = this.usersService.getUser();
     }
 }

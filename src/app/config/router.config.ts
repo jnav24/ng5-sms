@@ -19,6 +19,6 @@ export const RouterConfig: Route[] = [
         resolve: { user: UsersResolver }
     },
     { path: 'dashboard/messages', component: MessagesComponent, canActivate: [DashboardAuthGuard] },
-    { path: 'dashboard/contacts', component: ContactsComponent, canActivate: [DashboardAuthGuard] },
+    { path: 'dashboard/contacts', component: ContactsComponent, canActivate: [DashboardAuthGuard], resolve: { user: UsersResolver } },
     { path: '**', redirectTo: 'login' }
 ];

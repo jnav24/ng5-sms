@@ -10,6 +10,7 @@ import {LogService} from '@app/common/services/log.service';
 @Injectable()
 export class UsersService {
     private uid: String;
+    private userInfo: UserInterface;
 
     constructor(private fdb: FirebaseDbService,
                 private log: LogService,
@@ -35,6 +36,14 @@ export class UsersService {
 
     setUserUid(uid: String) {
         this.uid = uid;
+    }
+
+    setUser(user) {
+        this.userInfo = user;
+    }
+
+    getUser(): UserInterface {
+        return this.userInfo;
     }
 
     getUserByUid(uid: string): Observable<{}> {
