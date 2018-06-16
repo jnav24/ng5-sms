@@ -3,6 +3,16 @@
 nav, .toolbar {
 	background: $primary;
 	margin-bottom: 30px;
-	padding: 20px;
+	//padding: 20px 0;
 	width: 100%;
+}
+
+a.mat-button, button.mat-button {
+	color: #fff;
+	line-height: 36px;
+	@include font(14px, 400);
+}
+
+.material-icons {
+	font-size: 36px;
 }

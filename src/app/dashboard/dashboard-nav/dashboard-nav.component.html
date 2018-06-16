@@ -1,8 +1,18 @@
-<mat-toolbar class="toolbar">
-	<a routerLink="/dashboard">Dashboard</a>
-	<a routerLink="/dashboard/contacts">Contacts</a>
-	<a routerLink="/dashboard/messages">Messages</a>
-	<button (click)="logout()">
-		Sign Out
-	</button>
-</mat-toolbar>
+<mat-grid-list class="toolbar" cols="12" rowHeight="75">
+	<mat-grid-tile colspan="2">Logo</mat-grid-tile>
+
+	<mat-grid-tile colspan="8">
+		<a routerLink="/dashboard" mat-button>Dashboard</a>
+		<a routerLink="/dashboard/contacts" mat-button>Contacts</a>
+		<a routerLink="/dashboard/messages" mat-button>Messages</a>
+	</mat-grid-tile>
+
+	<mat-grid-tile colspan="2">
+		<button mat-button [matMenuTriggerFor]="user"><i class="material-icons">account_circle</i></button>
+	</mat-grid-tile>
+</mat-grid-list>
+
+<mat-menu #user="matMenu" yPosition="above">
+	<a mat-menu-item href="#">Profile</a>
+	<button mat-menu-item (click)="logout()">Log out</button>
+</mat-menu>

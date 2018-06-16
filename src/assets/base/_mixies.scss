@@ -8,3 +8,11 @@ $colors: (
 	mid-grey: lighten(#000, 50%),
 	x-light-grey: #efefef,
 );
+
+@mixin font($size: 16px, $weight: normal) {
+	font: {
+		family: 'Open Sans', sans-serif;
+		size: $size;
+		weight: $weight;
+	};
+}
