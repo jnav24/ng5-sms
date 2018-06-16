@@ -45,6 +45,7 @@ import {ResetPasswordService} from '@app/onboard/reset-password/reset-password.s
 import {ControlsService} from '@app/common/services/controls.service';
 import {ContactsService} from '@app/common/services/contacts.service';
 import {MessagesService} from '@app/messages/messages.service';
+import { ContactsComponent } from './contacts/contacts.component';
 
 
 
@@ -58,6 +59,7 @@ import {MessagesService} from '@app/messages/messages.service';
         ResetPasswordComponent,
         MessagesComponent,
         DashboardNavComponent,
+        ContactsComponent,
     ],
     imports: [
         AngularFireModule.initializeApp(environmentConfig.firebase),
