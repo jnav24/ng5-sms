@@ -27,6 +27,8 @@ import { RegisterComponent } from './onboard/register/register.component';
 import { ResetPasswordComponent } from './onboard/reset-password/reset-password.component';
 import { MessagesComponent } from './messages/messages.component';
 import { DashboardNavComponent } from './dashboard/dashboard-nav/dashboard-nav.component';
+import { ContactsComponent } from './contacts/contacts.component';
+import { AddContactComponent } from './dialogs/add-contact/add-contact.component';
 
 // Guard
 import {DashboardAuthGuard} from '@app/dashboard/dashboard-auth.guard';
@@ -45,7 +47,7 @@ import {ResetPasswordService} from '@app/onboard/reset-password/reset-password.s
 import {ControlsService} from '@app/common/services/controls.service';
 import {ContactsService} from '@app/common/services/contacts.service';
 import {MessagesService} from '@app/messages/messages.service';
-import { ContactsComponent } from './contacts/contacts.component';
+
 
 
 
@@ -60,6 +62,7 @@ import { ContactsComponent } from './contacts/contacts.component';
         MessagesComponent,
         DashboardNavComponent,
         ContactsComponent,
+        AddContactComponent,
     ],
     imports: [
         AngularFireModule.initializeApp(environmentConfig.firebase),
@@ -97,6 +100,9 @@ import { ContactsComponent } from './contacts/contacts.component';
         ControlsService,
         ContactsService,
         MessagesService,
+    ],
+    entryComponents: [
+       AddContactComponent,
     ],
     bootstrap: [AppComponent]
 })

@@ -1,0 +1,9 @@
+<mat-grid-list cols="2">
+	<mat-grid-tile colspan="1">Left</mat-grid-tile>
+	<mat-grid-tile colspan="1">right</mat-grid-tile>
+</mat-grid-list>
+
+<div class="text-right">
+	<button mat-button (click)="close()">Cancel</button>
+	<button mat-raised-button [disabled]="true" (click)="addContact()">Add Contact</button>
+</div>
