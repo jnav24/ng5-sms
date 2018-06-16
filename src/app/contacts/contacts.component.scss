@@ -1,0 +1,35 @@
+@import '../../assets/base/imports';
+
+.empty {
+	$top: 40%;
+	margin-top: $top;
+	@include transform(translateY(-#{$top}));
+
+	h2 {
+		margin-bottom: 5px;
+		margin-top: 0;
+	}
+
+	p {
+		color: map_get($colors, mid-grey);
+		margin-bottom: 40px;
+		margin-top: 0;
+	}
+
+	.material-icons {
+		&.cta {
+			color: map_get($colors, mid-grey);
+			font-size: 202px;
+		}
+	}
+
+	button {
+		padding: 10px 25px;
+		@include colors(primary);
+
+		i, span {
+			display: inline-block;
+			vertical-align: middle;
+		}
+	}
+}

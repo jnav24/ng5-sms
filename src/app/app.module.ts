@@ -5,7 +5,7 @@ import {RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
     MatButtonModule, MatCardModule, MatCheckboxModule, MatIconModule, MatInputModule, MatMenuModule, MatRippleModule,
-    MatToolbarModule, MatProgressSpinnerModule, MatGridListModule
+    MatToolbarModule, MatProgressSpinnerModule, MatGridListModule, MatDialogModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularFireModule} from 'angularfire2';
@@ -66,6 +66,7 @@ import { ContactsComponent } from './contacts/contacts.component';
         BrowserModule,
         BrowserAnimationsModule,
         FormsModule,
+        MatDialogModule,
         MatInputModule,
         MatRippleModule,
         MatButtonModule,

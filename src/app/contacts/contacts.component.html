@@ -1,5 +1,10 @@
 <app-dashboard-nav></app-dashboard-nav>
 
-<p>
-  contacts works!
-</p>
+<section>
+	<div *ngIf="!contacts.length" class="empty text-center">
+		<i class="material-icons cta">people</i>
+		<h2>Looks like you haven't added any contacts yet.</h2>
+		<p>Click on the button below to add a contact.</p>
+		<button mat-raised-button (click)="addContact()"><i class="material-icons">add</i><span>Add Contact</span></button>
+	</div>
+</section>
