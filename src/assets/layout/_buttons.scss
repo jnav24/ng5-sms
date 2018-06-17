@@ -1,0 +1,7 @@
+button {
+	padding: 10px 25px;
+
+	&#{&} {
+		padding: 10px 25px;
+	}
+}

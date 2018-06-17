@@ -5,7 +5,7 @@ import {RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
     MatButtonModule, MatCardModule, MatCheckboxModule, MatIconModule, MatInputModule, MatMenuModule, MatRippleModule,
-    MatToolbarModule, MatProgressSpinnerModule, MatGridListModule, MatDialogModule
+    MatToolbarModule, MatProgressSpinnerModule, MatGridListModule, MatDialogModule, MatSelectModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularFireModule} from 'angularfire2';
@@ -70,6 +70,7 @@ import {MessagesService} from '@app/messages/messages.service';
         BrowserAnimationsModule,
         FormsModule,
         MatDialogModule,
+        MatSelectModule,
         MatInputModule,
         MatRippleModule,
         MatButtonModule,

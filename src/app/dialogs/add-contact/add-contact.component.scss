@@ -1,0 +1,69 @@
+@import '../../../assets/base/imports';
+
+h2 {
+	color: map-get($colors, dialog);
+	font-size: 30px;
+	margin: 0;
+}
+
+.photo {
+	&__box {
+		flex-direction: column;
+		text-align: center;
+
+		.photo-button {
+			background: map_get($colors, secondary);
+			display: inline-block;
+
+			&.disabled {
+				background: map_get($colors, light-grey);
+			}
+		}
+	}
+
+	.material-icons {
+		&.photo__default {
+			display: block;
+			font-size: 253px;
+		}
+	}
+}
+
+.form {
+	flex-direction: column;
+	padding: 0;
+	width: 100%;
+}
+
+.button {
+	&-background {
+		background: map-get($colors, light-grey);
+		height: 90px;
+		width: 800px;
+		@include posa(n,-24px,-24px,n);
+	}
+
+	&-actions {
+		margin-top: 35px;
+		position: relative;
+		text-align: right;
+
+		&__close {
+			color: map-get($colors, mid-grey);
+		}
+
+		&__save {
+			@include colors(primary);
+		}
+	}
+}
+
+input[type='number'] {
+	-moz-appearance:textfield;
+}
+/* Webkit browsers like Safari and Chrome */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}

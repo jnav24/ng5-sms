@@ -1,9 +1,68 @@
-<mat-grid-list cols="2">
-	<mat-grid-tile colspan="1">Left</mat-grid-tile>
-	<mat-grid-tile colspan="1">right</mat-grid-tile>
-</mat-grid-list>
+<h2 class="text-center">Add Contact</h2>
 
-<div class="text-right">
-	<button mat-button (click)="close()">Cancel</button>
-	<button mat-raised-button [disabled]="true" (click)="addContact()">Add Contact</button>
+<div [formGroup]="contact">
+	<mat-dialog-content>
+		<mat-grid-list cols="2">
+			<mat-grid-tile colspan="1" class="photo">
+				<div class="photo__box">
+					<i class="material-icons photo__default">account_circle</i>
+					<button mat-button [disabled]="true" class="photo-button disabled">Add Photo</button>
+				</div>
+			</mat-grid-tile>
+
+			<mat-grid-tile colspan="1">
+				<div class="form">
+					<mat-grid-list cols="2" rowHeight="60" gutterSize="10" style="width:100%">
+						<mat-grid-tile colspan="1">
+							<mat-form-field class="fw-full">
+								<input matInput placeholder="First Name" formControlName="first_name">
+							</mat-form-field>
+						</mat-grid-tile>
+
+						<mat-grid-tile colspan="1">
+							<mat-form-field class="fw-full">
+								<input matInput placeholder="Last Name" formControlName="last_name">
+							</mat-form-field>
+						</mat-grid-tile>
+					</mat-grid-list>
+
+					<mat-form-field class="fw-full">
+						<input matInput placeholder="Email" formControlName="email">
+					</mat-form-field>
+
+					<mat-grid-list cols="2" rowHeight="60" gutterSize="10" style="width:100%">
+						<mat-grid-tile colspan="1">
+							<mat-form-field class="fw-full">
+								<mat-select placeholder="Phone Type" formControlName="phoneType" (change)="checkRequired()">
+									<mat-option *ngFor="let phone of phoneTypes" [(value)]="phone.type">
+										{{ phone.value }}
+									</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</mat-grid-tile>
+
+						<mat-grid-tile colspan="1">
+							<mat-form-field class="fw-full">
+								<span matPrefix>+1 &nbsp;</span>
+								<input matInput placeholder="Phone Number" disabled *ngIf="!contact.value.phoneType">
+								<input matInput placeholder="Phone Number" formControlName="phone" type="number" *ngIf="contact.value.phoneType">
+							</mat-form-field>
+						</mat-grid-tile>
+					</mat-grid-list>
+				</div>
+			</mat-grid-tile>
+		</mat-grid-list>
+	</mat-dialog-content>
+
+	<div class="button-actions">
+		<div class="button-background"></div>
+		<button mat-button (click)="close()" class="button-actions__close">Cancel</button>
+		<button mat-raised-button
+				class="button-actions__save"
+				[disabled]="!contact.valid"
+				[ngClass]="{'disabled': !contact.valid}"
+				(click)="addContact()">
+			Add Contact
+		</button>
+	</div>
 </div>

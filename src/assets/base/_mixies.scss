@@ -1,9 +1,11 @@
 $primary: lighten(#000, 10%);
-$secondary: lighten(#000, 70%);
+$secondary: lighten(#000, 90%);
 $navHeight: 65px;
 
 $colors: (
-	primary: lighten(#000, 10%),
+	dialog: lighten(#000, 50%),
+	primary: $primary,
+	secondary: $secondary,
 	light-grey: lighten(#000, 95%),
 	mid-grey: lighten(#000, 50%),
 	x-light-grey: #efefef,
