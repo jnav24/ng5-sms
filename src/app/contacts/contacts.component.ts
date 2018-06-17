@@ -35,9 +35,6 @@ export class ContactsComponent implements OnInit {
 
                 this.contacts[letter].push(result);
                 this.setContactKeys();
-                console.log(this.contacts);
-                console.log(this.contacts[letter]);
-                console.log(this.contactKeys);
             }
         });
     }
