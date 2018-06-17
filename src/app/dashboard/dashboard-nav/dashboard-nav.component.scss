@@ -16,3 +16,13 @@ a.mat-button, button.mat-button {
 .material-icons {
 	font-size: 36px;
 }
+
+a {
+	display: inline-block;
+	padding: 30px;
+	text-decoration: none;
+
+	&.active {
+		@include colors(secondary);
+	}
+}

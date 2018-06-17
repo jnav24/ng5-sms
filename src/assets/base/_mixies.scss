@@ -24,4 +24,8 @@ $colors: (
 		background: map_get($colors, primary);
 		color: #fff;
 	}
+	@if $color == secondary {
+		background: map-get($colors, secondary);
+		color: #000;
+	}
 }
