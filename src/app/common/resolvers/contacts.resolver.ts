@@ -3,34 +3,43 @@ import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/rou
 import {Injectable} from '@angular/core';
 import {UsersService} from '@app/common/services/users.service';
 import {ContactsService} from '@app/common/services/contacts.service';
+import {LogService} from '@app/common/services/log.service';
 
 @Injectable()
 export class ContactsResolver implements Resolve<ContactsInterface> {
+    private contacts;
+
     constructor(private usersService: UsersService,
+                private log: LogService,
                 private contactsService: ContactsService) {}
 
     async resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<any> {
         try {
             const uid = this.usersService.getUserUid().toString();
-            return new Promise(resolve => {
-                const contacts = [
-                    { first_name: 'Michael', last_name: 'Navarro', email: 'mnavarro@test.com', mobile: '(954) 321-7654' },
-                    { first_name: 'Alan', last_name: 'Read', email: 'aread22@test.com', mobile: '(305) 123-4567' },
-                    { first_name: 'Mark', last_name: 'Henry', email: 'mhenry@test.com', mobile: '(305) 246-9753' },
-                    { first_name: 'Angelo', last_name: 'Henry', email: 'mhenry@test.com', mobile: '(305) 246-9753' },
-                    { first_name: 'Azru', last_name: 'Henry', email: 'mhenry@test.com', mobile: '(305) 246-9753' },
-                    { first_name: 'Bob', last_name: 'Henry', email: 'mhenry@test.com', mobile: '(305) 246-9753' },
-                    { first_name: 'Lola', last_name: 'Henry', email: 'mhenry@test.com', mobile: '(305) 246-9753' },
-                    { first_name: 'Coko', last_name: 'Henry', email: 'mhenry@test.com', mobile: '(305) 246-9753' },
-                    { first_name: 'Vanessa', last_name: 'Henry', email: 'mhenry@test.com', mobile: '(305) 246-9753' },
-                    { first_name: 'Stephen', last_name: 'Henry', email: 'mhenry@test.com', mobile: '(305) 246-9753' },
-                    { first_name: 'Robert', last_name: 'Henry', email: 'mhenry@test.com', mobile: '(305) 246-9753' },
-                    { first_name: 'Tom', last_name: 'Henry', email: 'mhenry@test.com', mobile: '(305) 246-9753' },
-                    { first_name: 'Jorge', last_name: 'Henry', email: 'mhenry@test.com', mobile: '(305) 246-9753' },
-                ];
-                this.contactsService.setContacts(contacts);
-                resolve(contacts);
+            const contactsPromise = await new Promise(resolve => {
+                const contactsList = this.contactsService.getContacts();
+
+                if (typeof contactsList === 'undefined' || !contactsList) {
+                    this.contacts = this.contactsService
+                        .getContactByUid(uid)
+                        .subscribe(contacts => {
+                            this.contactsService.setContacts(contacts);
+                            resolve(contacts);
+                        });
+                } else {
+                    resolve(contactsList);
+                }
             });
-        } catch (error) {}
+
+            this.contacts.unsubscribe();
+            return contactsPromise;
+        } catch (error) {
+            const log = {
+                level: 'error',
+                message: error.message,
+                page: 'contacts-resolver.resolve'
+            };
+            this.log.writeLog(log);
+        }
     }
 }

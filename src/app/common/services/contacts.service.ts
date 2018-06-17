@@ -2,26 +2,53 @@ import { Injectable } from '@angular/core';
 import {AngularFirestore} from 'angularfire2/firestore';
 import {ContactsInterface} from '@app/common/interfaces/contacts.interface';
 import * as _ from 'lodash';
+import {FirebaseDbService} from '@app/common/services/firebase-db.service';
+import {AngularFireDatabase} from 'angularfire2/database';
 
 @Injectable()
 export class ContactsService {
     private contacts;
+    private tableName = 'contacts_v2';
 
-    constructor(private af: AngularFirestore) {}
+    constructor(private fdb: FirebaseDbService,
+                private afs: AngularFirestore,
+                private af: AngularFireDatabase) {}
 
     getContacts() {
         return this.contacts;
     }
 
+    getContactByUid(uid: string) {
+        if (this.fdb.isFirebase()) {
+            return this.af.object(`${this.tableName}/${uid}`).valueChanges();
+        }
+
+        return this.afs.collection(this.tableName).doc(uid).collection('contacts').valueChanges();
+    }
+
+    saveContact(contact: ContactsInterface, uid: string) {
+        if (this.fdb.isFirebase()) {
+            this.af
+                .object(`${this.tableName}/${uid}`);
+                // .add(contact);
+        }
+
+        return this.afs
+            .collection(this.tableName)
+            .doc(uid)
+            .collection('contacts')
+            .add(contact);
+    }
+
     getContact(contact_id) {
-        return this.af.doc(`contacts/${contact_id}`).valueChanges();
+        return this.afs.doc(`contacts/${contact_id}`).valueChanges();
     }
 
     getContactList(uid) {
-        return this.af.doc(`/users/${uid}`).valueChanges();
+        return this.afs.doc(`/users/${uid}`).valueChanges();
     }
 
-    setContacts(contacts: ContactsInterface[]) {
+    setContacts(contacts) {
         this.contacts = this.sortContacts(contacts);
     }
 
