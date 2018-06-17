@@ -13,21 +13,31 @@
 			<h2>{{ key }}</h2>
 
 			<mat-card class="contact__block">
-				<mat-grid-list cols="10" class="contact__block--row" rowHeight="30" *ngFor="let contact of contacts[key]" role="list">
+				<mat-grid-list cols="10" class="contact__block--row" rowHeight="70" *ngFor="let contact of contacts[key]">
 					<mat-grid-tile colspan="2">
-						<div class="contact__block--row-content">
-							image
+						<div class="contact__block--row-content content-left l10">
+							<div class="content-image">
+								<i class="material-icons">account_circle</i>
+							</div>
 						</div>
 					</mat-grid-tile>
 
 					<mat-grid-tile colspan="6">
-						<div class="contact__block--row-content content-left">
-							{{ contact.first_name }} {{ contact.last_name }}
+						<div class="contact__block--row-content content-left t8">
+							<p>{{ contact.first_name }} {{ contact.last_name }}</p>
+							<p class="content-info">
+								<i class="material-icons">email</i><span>{{ contact.email || 'n/a' }}</span>
+								<i class="material-icons">phone</i><span>{{ contact.mobile || 'n/a' }}</span>
+							</p>
 						</div>
 					</mat-grid-tile>
 
 					<mat-grid-tile colspan="2">
-						<div class="contact__block--row-content">actions</div>
+						<div class="contact__block--row-content content-actions">
+							<i class="material-icons">email</i>
+							<i class="material-icons">chat</i>
+							<i class="material-icons">edit</i>
+						</div>
 					</mat-grid-tile>
 				</mat-grid-list>
 			</mat-card>

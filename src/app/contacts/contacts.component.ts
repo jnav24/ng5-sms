@@ -11,11 +11,11 @@ import {AddContactComponent} from '@app/dialogs/add-contact/add-contact.componen
 export class ContactsComponent implements OnInit {
     contacts = {
         A: [
-            { first_name: 'Alan', last_name: 'Reed' }
+            { first_name: 'Alan', last_name: 'Read', email: 'aread22@test.com', mobile: '(305) 123-4567' }
         ],
         M: [
-            { first_name: 'Mark', last_name: 'Henry' },
-            { first_name: 'Michael', last_name: 'Navarro' }
+            { first_name: 'Mark', last_name: 'Henry', email: 'mhenry@test.com', mobile: '(305) 246-9753' },
+            { first_name: 'Michael', last_name: 'Navarro', email: 'mnavarro@test.com', mobile: '(954) 321-7654' }
         ]
     };
     contactKeys = [];

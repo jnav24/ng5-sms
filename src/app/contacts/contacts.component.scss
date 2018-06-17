@@ -36,15 +36,84 @@
 
 .contact__block {
 	&--row {
+		border-top: 1px solid map-get($colors, mid-grey);
+
+		&:hover {
+			background: map-get($colors, light-grey);
+
+			.content-actions {
+				.material-icons {
+					opacity: 1;
+
+					&:hover {
+						color: map-get($colors, primary);
+					}
+				}
+			}
+		}
+
+		&:first-of-type {
+			border: 0;
+		}
+
 		.mat-figure {
 			justify-content: flex-start;
 		}
+
 		&-content {
-			justify-content: flex-start;
-			text-align: left;
+			padding: 10px 0;
+
+			p {
+				margin: 0;
+
+				&.content-info {
+					color: map_get($colors, mid-grey);
+					font-size: 14px;
+
+					.material-icons {
+						font-size: 16px;
+						margin-right: 5px;
+					}
+
+					span {
+						margin-right: 10px;
+					}
+
+					i, span {
+						display: inline-block;
+						vertical-align: middle;
+					}
+				}
+			}
 
 			&.content-left {
 				@include posa(0,n,n,0);
+
+				&.l10 {
+					left: 10px;
+				}
+
+				&.t8 {
+					top: 8px;
+				}
+			}
+
+			.content-image {
+				overflow: hidden;
+				@include circle(50px, #fff);
+
+				.material-icons {
+					font-size: 61px;
+					@include transform(translate(-5px, -5px));
+				}
+			}
+
+			&.content-actions {
+				.material-icons {
+					color: map-get($colors, mid-grey);
+					cursor: pointer;
+					opacity: 0;
+				}
 			}
 		}
 	}
