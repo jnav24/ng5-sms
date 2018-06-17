@@ -28,12 +28,12 @@ export class AddContactComponent implements OnInit {
         });
     }
 
-    close() {
-        this.dialogRef.close();
+    close(contact = '') {
+        this.dialogRef.close(contact);
     }
 
     addContact() {
-        this.close();
+        this.close(this.contact.value);
     }
 
     checkRequired() {

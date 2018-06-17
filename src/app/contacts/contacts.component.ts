@@ -9,11 +9,22 @@ import {AddContactComponent} from '@app/dialogs/add-contact/add-contact.componen
     styleUrls: ['./contacts.component.scss']
 })
 export class ContactsComponent implements OnInit {
-    contacts: ContactsInterface[] = [];
+    contacts = {
+        A: [
+            { first_name: 'Alan', last_name: 'Reed' }
+        ],
+        M: [
+            { first_name: 'Mark', last_name: 'Henry' },
+            { first_name: 'Michael', last_name: 'Navarro' }
+        ]
+    };
+    contactKeys = [];
 
     constructor(public dialog: MatDialog) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.setContactKeys();
+    }
 
     addContact() {
         const dialogRef = this.dialog.open(AddContactComponent, {
@@ -22,8 +33,22 @@ export class ContactsComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
-            console.log(result);
+            if (result !== '') {
+                const letter = result.first_name.split('')[0].toUpperCase();
+                if (typeof this.contacts[letter] === 'undefined') {
+                    this.contacts[letter] = [];
+                }
+
+                this.contacts[letter].push(result);
+                this.setContactKeys();
+                console.log(this.contacts);
+                console.log(this.contacts[letter]);
+                console.log(this.contactKeys);
+            }
         });
+    }
+
+    setContactKeys() {
+        this.contactKeys = Object.keys(this.contacts);
     }
 }

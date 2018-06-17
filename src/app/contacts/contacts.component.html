@@ -1,10 +1,36 @@
 <app-dashboard-nav></app-dashboard-nav>
 
 <section>
-	<div *ngIf="!contacts.length" class="empty text-center">
+	<div *ngIf="!contactKeys.length" class="empty text-center">
 		<i class="material-icons cta">people</i>
 		<h2>Looks like you haven't added any contacts yet.</h2>
 		<p>Click on the button below to add a contact.</p>
 		<button mat-raised-button (click)="addContact()"><i class="material-icons">add</i><span>Add Contact</span></button>
+	</div>
+
+	<div *ngIf="contactKeys.length">
+		<div *ngFor="let key of contactKeys">
+			<h2>{{ key }}</h2>
+
+			<mat-card class="contact__block">
+				<mat-grid-list cols="10" class="contact__block--row" rowHeight="30" *ngFor="let contact of contacts[key]" role="list">
+					<mat-grid-tile colspan="2">
+						<div class="contact__block--row-content">
+							image
+						</div>
+					</mat-grid-tile>
+
+					<mat-grid-tile colspan="6">
+						<div class="contact__block--row-content content-left">
+							{{ contact.first_name }} {{ contact.last_name }}
+						</div>
+					</mat-grid-tile>
+
+					<mat-grid-tile colspan="2">
+						<div class="contact__block--row-content">actions</div>
+					</mat-grid-tile>
+				</mat-grid-list>
+			</mat-card>
+		</div>
 	</div>
 </section>

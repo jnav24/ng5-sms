@@ -33,3 +33,19 @@
 		}
 	}
 }
+
+.contact__block {
+	&--row {
+		.mat-figure {
+			justify-content: flex-start;
+		}
+		&-content {
+			justify-content: flex-start;
+			text-align: left;
+
+			&.content-left {
+				@include posa(0,n,n,0);
+			}
+		}
+	}
+}
