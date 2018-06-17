@@ -35,7 +35,7 @@ import {DashboardAuthGuard} from '@app/dashboard/dashboard-auth.guard';
 import {OnboardGuard} from '@app/onboard/onboard.guard';
 
 // Resolvers
-import {UsersResolver} from '@app/common/resolvers/users.resolvers';
+import {UsersResolver} from '@app/common/resolvers/users.resolver';
 
 // Services
 import {LoginService} from '@app/onboard/login/login.service';

@@ -2,7 +2,7 @@ import {Route} from '@angular/router';
 import {DashboardComponent} from '@app/dashboard/dashboard.component';
 import {DashboardAuthGuard} from '@app/dashboard/dashboard-auth.guard';
 import {OnboardComponent} from '@app/onboard/onboard.component';
-import {UsersResolver} from '@app/common/resolvers/users.resolvers';
+import {UsersResolver} from '@app/common/resolvers/users.resolver';
 import {OnboardGuard} from '@app/onboard/onboard.guard';
 import {MessagesComponent} from '@app/messages/messages.component';
 import {ContactsComponent} from '@app/contacts/contacts.component';
