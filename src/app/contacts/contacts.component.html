@@ -34,8 +34,8 @@
 
 					<mat-grid-tile colspan="2">
 						<div class="contact__block--row-content content-actions">
-							<i class="material-icons">email</i>
-							<i class="material-icons">chat</i>
+							<i class="material-icons" *ngIf="contact.email.length">email</i>
+							<i class="material-icons" *ngIf="contact.mobile.length">chat</i>
 							<i class="material-icons">edit</i>
 						</div>
 					</mat-grid-tile>
