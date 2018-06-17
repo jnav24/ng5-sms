@@ -36,6 +36,7 @@ import {OnboardGuard} from '@app/onboard/onboard.guard';
 
 // Resolvers
 import {UsersResolver} from '@app/common/resolvers/users.resolver';
+import {ContactsResolver} from '@app/common/resolvers/contacts.resolver';
 
 // Services
 import {LoginService} from '@app/onboard/login/login.service';
@@ -96,6 +97,7 @@ import {MessagesService} from '@app/messages/messages.service';
         DashboardAuthGuard,
         UsersService,
         UsersResolver,
+        ContactsResolver,
         LogService,
         ResetPasswordService,
         ControlsService,

@@ -6,6 +6,7 @@ import {UsersResolver} from '@app/common/resolvers/users.resolver';
 import {OnboardGuard} from '@app/onboard/onboard.guard';
 import {MessagesComponent} from '@app/messages/messages.component';
 import {ContactsComponent} from '@app/contacts/contacts.component';
+import {ContactsResolver} from '@app/common/resolvers/contacts.resolver';
 
 export const RouterConfig: Route[] = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -19,6 +20,11 @@ export const RouterConfig: Route[] = [
         resolve: { user: UsersResolver }
     },
     { path: 'dashboard/messages', component: MessagesComponent, canActivate: [DashboardAuthGuard] },
-    { path: 'dashboard/contacts', component: ContactsComponent, canActivate: [DashboardAuthGuard], resolve: { user: UsersResolver } },
+    {
+        path: 'dashboard/contacts',
+        component: ContactsComponent,
+        canActivate: [DashboardAuthGuard],
+        resolve: { user: UsersResolver, contacts: ContactsResolver }
+    },
     { path: '**', redirectTo: 'login' }
 ];

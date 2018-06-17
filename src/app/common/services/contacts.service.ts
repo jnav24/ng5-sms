@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore} from 'angularfire2/firestore';
+import {ContactsInterface} from '@app/common/interfaces/contacts.interface';
 
 @Injectable()
 export class ContactsService {
+    private contacts: ContactsInterface[];
+
     constructor(private af: AngularFirestore) {}
 
     getAllContacts() {}
@@ -13,5 +16,14 @@ export class ContactsService {
 
     getContactList(uid) {
         return this.af.doc(`/users/${uid}`).valueChanges();
+    }
+
+    setContacts(contacts: ContactsInterface[]) {
+        this.contacts = this.sortContacts(contacts);
+    }
+
+    private sortContacts(contacts: ContactsInterface[]) {
+        console.log(contacts);
+        return contacts;
     }
 }
