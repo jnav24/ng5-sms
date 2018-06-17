@@ -8,12 +8,14 @@
 		<button mat-raised-button (click)="addContact()"><i class="material-icons">add</i><span>Add Contact</span></button>
 	</div>
 
-	<div *ngIf="contactKeys.length">
+	<div *ngIf="contactKeys.length" class="mb30">
+		<button mat-fab class="nopad add-contact"><i class="material-icons">add</i></button>
+
 		<div *ngFor="let key of contactKeys">
 			<h2>{{ key }}</h2>
 
 			<mat-card class="contact__block">
-				<mat-grid-list cols="10" class="contact__block--row" rowHeight="70" *ngFor="let contact of contacts[key]">
+				<mat-grid-list cols="10" class="contact__block--row" rowHeight="80" *ngFor="let contact of contacts[key]">
 					<mat-grid-tile colspan="2">
 						<div class="contact__block--row-content content-left l10">
 							<div class="content-image">

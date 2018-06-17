@@ -36,7 +36,7 @@
 
 .contact__block {
 	&--row {
-		border-top: 1px solid map-get($colors, mid-grey);
+		border-top: 1px solid lighten(map-get($colors, mid-grey), 35%);
 
 		&:hover {
 			background: map-get($colors, light-grey);
@@ -61,7 +61,7 @@
 		}
 
 		&-content {
-			padding: 10px 0;
+			padding: 15px 0;
 
 			p {
 				margin: 0;
@@ -117,4 +117,11 @@
 			}
 		}
 	}
+}
+
+.add-contact {
+	bottom: 20px;
+	position: fixed;
+	right: 20px;
+	z-index: 1;
 }

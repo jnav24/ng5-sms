@@ -1,6 +1,18 @@
 button {
 	padding: 10px 25px;
 
+	&.nopad {
+		padding: 0;
+
+		span {
+			padding: 0;
+
+			&#{&}, &.mat-button-wrapper {
+				padding: 0;
+			}
+		}
+	}
+
 	&#{&} {
 		padding: 10px 25px;
 	}

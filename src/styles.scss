@@ -16,6 +16,11 @@ body, html {
 	};
 }
 
+h1 {
+	color: #000;
+	font-weight: 300;
+}
+
 h2 {
 	color: #000;
 	font-weight: 300;
@@ -26,12 +31,27 @@ a, button {
 	font-weight: 400;
 }
 
+.mb30 {
+	margin-bottom: 30px;
+}
+
+.posr {
+	position: relative;
+}
+
 .text-center {
+	justify-content: center;
 	text-align: center;
 }
 
 .text-right {
+	justify-content: flex-end;
 	text-align: right;
+}
+
+.text-left {
+	justify-content: flex-start;
+	text-align: left;
 }
 
 .mat-focused .mat-input-placeholder {
