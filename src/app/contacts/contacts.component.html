@@ -9,7 +9,7 @@
 	</div>
 
 	<div *ngIf="contactKeys.length" class="mb30">
-		<button mat-fab class="nopad add-contact"><i class="material-icons">add</i></button>
+		<button mat-fab class="nopad add-contact" (click)="addContact()"><i class="material-icons">add</i></button>
 
 		<div *ngFor="let key of contactKeys">
 			<h2>{{ key }}</h2>

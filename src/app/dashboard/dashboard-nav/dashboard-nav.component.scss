@@ -17,11 +17,13 @@ a.mat-button, button.mat-button {
 	font-size: 36px;
 }
 
-a {
+.main-nav a {
 	display: inline-block;
 	padding: 30px;
 	text-decoration: none;
+}
 
+a {
 	&.active {
 		@include colors(secondary);
 	}
