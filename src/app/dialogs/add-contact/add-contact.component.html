@@ -5,8 +5,11 @@
 		<mat-grid-list cols="2">
 			<mat-grid-tile colspan="1" class="photo">
 				<div class="photo__box">
-					<i class="material-icons photo__default">account_circle</i>
-					<button mat-button [disabled]="true" class="photo-button disabled">Add Photo</button>
+					<div class="photo__box--circle">
+						<i class="material-icons photo__default" *ngIf="!image">account_circle</i>
+						<img [src]="image" alt="" *ngIf="image">
+					</div>
+					<input type="file" (change)="detectFiles($event)">
 				</div>
 			</mat-grid-tile>
 

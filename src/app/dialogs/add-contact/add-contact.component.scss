@@ -11,6 +11,20 @@ h2 {
 		flex-direction: column;
 		text-align: center;
 
+		&--circle {
+			margin: 0 auto 20px;
+			overflow: hidden;
+			position: relative;
+			@include circle(200px, #fff);
+
+			img {
+				height: auto;
+				min-height: 100%;
+				width: 100%;
+				@include posa(0,n,n,0);
+			}
+		}
+
 		.photo-button {
 			background: map_get($colors, secondary);
 			display: inline-block;
@@ -24,7 +38,9 @@ h2 {
 	.material-icons {
 		&.photo__default {
 			display: block;
-			font-size: 253px;
+			font-size: 240px;
+			margin-left: -20px;
+			margin-top: -20px;
 		}
 	}
 }

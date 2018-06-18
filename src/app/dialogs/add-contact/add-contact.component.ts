@@ -15,6 +15,8 @@ export class AddContactComponent implements OnInit {
     ];
     contact: FormGroup;
     title: String = 'Add';
+    imageFile: File;
+    image: string;
 
     constructor(private fb: FormBuilder,
                 public dialogRef: MatDialogRef<AddContactComponent>,
@@ -46,6 +48,17 @@ export class AddContactComponent implements OnInit {
        if (this.contact.value.phoneType !== '') {
            this.contact.addControl('phone', this.fb.control('', [Validators.required, Validators.pattern(/[0-9]{10}/)]));
        }
+    }
+
+    detectFiles(event) {
+        this.imageFile = event.target.files[0];
+        console.log(this.imageFile);
+
+        const reader = new FileReader();
+        reader.readAsDataURL(this.imageFile);
+        reader.addEventListener('load', () => {
+            this.image = reader.result;
+        }, false);
     }
 }
 
