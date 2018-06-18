@@ -15,7 +15,10 @@
 			<h2>{{ key }}</h2>
 
 			<mat-card class="contact__block">
-				<mat-grid-list cols="10" class="contact__block--row" rowHeight="80" *ngFor="let contact of contacts[key]">
+				<mat-grid-list cols="10"
+							   class="contact__block--row"
+							   rowHeight="80"
+							   *ngFor="let contact of contacts[key]; let int = index">
 					<mat-grid-tile colspan="2">
 						<div class="contact__block--row-content content-left l10">
 							<div class="content-image">
@@ -38,7 +41,7 @@
 						<div class="contact__block--row-content content-actions">
 							<i class="material-icons" *ngIf="contact.email">email</i>
 							<i class="material-icons" *ngIf="contact.mobile">chat</i>
-							<i class="material-icons">edit</i>
+							<i class="material-icons" (click)="editContact(int, key)">edit</i>
 						</div>
 					</mat-grid-tile>
 				</mat-grid-list>

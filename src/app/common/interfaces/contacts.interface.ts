@@ -5,4 +5,5 @@ export interface ContactsInterface {
     mobile?: string;
     home?: string;
     email?: string;
+    id?: string;
 }

@@ -23,7 +23,29 @@ export class ContactsService {
             return this.af.object(`${this.tableName}/${uid}`).valueChanges();
         }
 
-        return this.afs.collection(this.tableName).doc(uid).collection('contacts').valueChanges();
+        return this.afs
+            .collection(this.tableName)
+            .doc(uid)
+            .collection('contacts')
+            .snapshotChanges()
+            .map(actions => {
+                return actions.map(a => {
+                    const data = a.payload.doc.data();
+                    const id = a.payload.doc.id;
+                    return { id, ...data };
+                });
+            });
+    }
+
+    updateContact(cid: string, uid: string, data: ContactsInterface) {
+        if (this.fdb.isFirestore()) {
+            return this.afs
+                .collection(this.tableName)
+                .doc(uid)
+                .collection('contacts')
+                .doc(cid)
+                .set(data);
+        }
     }
 
     saveContact(contact: ContactsInterface, uid: string) {

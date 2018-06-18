@@ -14,10 +14,11 @@ export class AddContactComponent implements OnInit {
         { type: 'work', value: 'Work' },
     ];
     contact: FormGroup;
+    title: String = 'Add';
 
     constructor(private fb: FormBuilder,
                 public dialogRef: MatDialogRef<AddContactComponent>,
-                 @Inject(MAT_DIALOG_DATA) public data: any) { }
+                 @Inject(MAT_DIALOG_DATA) public data: any) {}
 
     ngOnInit() {
         this.contact = this.fb.group({
@@ -26,6 +27,11 @@ export class AddContactComponent implements OnInit {
             email: ['', [CustomValidator.checkEmail()]],
             phoneType: ['', []]
         });
+
+        if (Object.keys(this.data).length) {
+            this.contact.setValue(this.data);
+            this.title = 'Edit';
+        }
     }
 
     close(contact = '') {

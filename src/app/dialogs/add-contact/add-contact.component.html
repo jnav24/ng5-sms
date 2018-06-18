@@ -1,4 +1,4 @@
-<h2 class="text-center">Add Contact</h2>
+<h2 class="text-center">{{ title }} Contact</h2>
 
 <div [formGroup]="contact">
 	<mat-dialog-content>
@@ -62,7 +62,7 @@
 				[disabled]="!contact.valid"
 				[ngClass]="{'disabled': !contact.valid}"
 				(click)="addContact()">
-			Add Contact
+			Save Contact
 		</button>
 	</div>
 </div>
