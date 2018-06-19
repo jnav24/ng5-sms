@@ -9,7 +9,7 @@
 						<i class="material-icons photo__default" *ngIf="!image">account_circle</i>
 						<img [src]="image" alt="" *ngIf="image">
 					</div>
-					<input type="file" (change)="detectFiles($event)">
+					<input type="file" (change)="detectFiles($event)" formControlName="image">
 				</div>
 			</mat-grid-tile>
 

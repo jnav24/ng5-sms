@@ -27,7 +27,8 @@ export class AddContactComponent implements OnInit {
             first_name: ['', [Validators.required, Validators.minLength(3)]],
             last_name: ['', [Validators.required, Validators.minLength(3)]],
             email: ['', [CustomValidator.checkEmail()]],
-            phoneType: ['', []]
+            phoneType: ['', []],
+            image: ['', [CustomValidator.checkImage()]]
         });
 
         if (Object.keys(this.data).length) {
@@ -51,11 +52,15 @@ export class AddContactComponent implements OnInit {
     }
 
     detectFiles(event) {
-        this.imageFile = event.target.files[0];
-        console.log(this.imageFile);
+        const imageFile = event.target.files[0];
+        console.log(imageFile);
 
+        this.loadPreview(imageFile);
+    }
+
+    loadPreview(file) {
         const reader = new FileReader();
-        reader.readAsDataURL(this.imageFile);
+        reader.readAsDataURL(file);
         reader.addEventListener('load', () => {
             this.image = reader.result;
         }, false);
@@ -67,6 +72,24 @@ export class CustomValidator {
         return (control: AbstractControl) => {
             const regex = /\S+@\S+\.\S+/;
             if (control.value && !regex.test(control.value)) {
+                return { validateConfirm: false };
+            }
+
+            return null;
+        };
+    }
+
+    static checkImage() {
+        return (control: AbstractControl) => {
+            const acceptedTypes = [
+                'png',
+                'jpg',
+                'jpeg'
+            ];
+            const fileList = control.value.split('.');
+            const extension = fileList[fileList.length - 1];
+
+            if (control.value && acceptedTypes.indexOf(extension) < 0) {
                 return { validateConfirm: false };
             }
 
