@@ -37,12 +37,16 @@ export class AddContactComponent implements OnInit {
         }
     }
 
-    close(contact = '') {
+    close(contact = {}) {
         this.dialogRef.close(contact);
     }
 
     addContact() {
-        this.close(this.contact.value);
+        const results = {
+            form: this.contact.value,
+            file: this.imageFile
+        };
+        this.close(results);
     }
 
     checkRequired() {
@@ -52,10 +56,10 @@ export class AddContactComponent implements OnInit {
     }
 
     detectFiles(event) {
-        const imageFile = event.target.files[0];
-        console.log(imageFile);
+        this.imageFile = event.target.files[0];
+        console.log(this.imageFile);
 
-        this.loadPreview(imageFile);
+        this.loadPreview(this.imageFile);
     }
 
     loadPreview(file) {

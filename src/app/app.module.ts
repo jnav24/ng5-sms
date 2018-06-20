@@ -12,6 +12,7 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {AngularFirestore} from 'angularfire2/firestore';
+import {AngularFireStorage} from 'angularfire2/storage';
 import {MomentModule} from 'angular2-moment';
 
 // Config
@@ -48,6 +49,7 @@ import {ResetPasswordService} from '@app/onboard/reset-password/reset-password.s
 import {ControlsService} from '@app/common/services/controls.service';
 import {ContactsService} from '@app/common/services/contacts.service';
 import {MessagesService} from '@app/messages/messages.service';
+import {UploadService} from '@app/common/services/upload.service';
 
 
 
@@ -90,6 +92,7 @@ import {MessagesService} from '@app/messages/messages.service';
         AngularFireDatabase,
         AngularFireAuth,
         AngularFirestore,
+        AngularFireStorage,
         FirebaseDbService,
         LoginService,
         RegisterService,
@@ -103,6 +106,7 @@ import {MessagesService} from '@app/messages/messages.service';
         ControlsService,
         ContactsService,
         MessagesService,
+        UploadService,
     ],
     entryComponents: [
        AddContactComponent,

@@ -5,6 +5,7 @@ import {ContactsService} from '@app/common/services/contacts.service';
 import {UsersService} from '@app/common/services/users.service';
 import {ContactsInterface} from '@app/common/interfaces/contacts.interface';
 import * as _ from 'lodash';
+import {UploadService} from '@app/common/services/upload.service';
 
 @Component({
     selector: 'app-contacts',
@@ -17,6 +18,7 @@ export class ContactsComponent implements OnInit {
 
     constructor(public dialog: MatDialog,
                 private usersService: UsersService,
+                private uploadService: UploadService,
                 private contactsService: ContactsService) { }
 
     ngOnInit() {
@@ -31,9 +33,16 @@ export class ContactsComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            if (result !== '' && typeof result !== 'undefined') {
-                this.contactsService.saveContact(result, this.usersService.getUserUid().toString());
-                this.saveContact(null, result);
+            if (typeof result.form !== 'undefined') {
+                console.log(result);
+                if (typeof result.file !== 'undefined') {
+                    const url = this.uploadService.uploadFile(this.usersService.getUserUid().toString(), result.file);
+                    console.log(url);
+                }
+                // const url = this.uploadService.uploadFile(result.file);
+                // replace result.form.image = url;
+                // this.contactsService.saveContact(result, this.usersService.getUserUid().toString());
+                // this.saveContact(null, result);
             }
         });
     }
@@ -41,18 +50,20 @@ export class ContactsComponent implements OnInit {
     editContact(int: number, letter: string) {
         const id = this.contacts[letter][int]['id'];
         delete this.contacts[letter][int]['id'];
-
+        this.contacts[letter][int].image = '';
+console.log(this.contacts[letter][int]);
         const dialogRef = this.dialog.open(AddContactComponent, {
             width: '800px',
             data: this.contacts[letter][int]
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            if (result !== '' && typeof result !== 'undefined') {
-                this.removeContact(int, letter);
-                this.contactsService.updateContact(id, this.usersService.getUserUid().toString(), result);
-                this.saveContact(id, result);
-            }
+            console.log(result);
+            // if (result !== '' && typeof result !== 'undefined') {
+            //     this.removeContact(int, letter);
+            //     this.contactsService.updateContact(id, this.usersService.getUserUid().toString(), result);
+            //     this.saveContact(id, result);
+            // }
         });
     }
 
