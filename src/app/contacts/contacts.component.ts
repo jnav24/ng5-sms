@@ -36,13 +36,19 @@ export class ContactsComponent implements OnInit {
             if (typeof result.form !== 'undefined') {
                 console.log(result);
                 if (typeof result.file !== 'undefined') {
-                    const url = this.uploadService.uploadFile(this.usersService.getUserUid().toString(), result.file);
-                    console.log(url);
+                    const upload = this.uploadService.uploadFile(this.usersService.getUserUid().toString(), result.file);
+                    upload.then(res => {
+                        if (res.state === 'success') {
+                            result.form.image = res.downloadURL;
+                            console.log(result);
+                            this.contactsService.saveContact(result, this.usersService.getUserUid().toString());
+                            this.saveContact(null, result);
+                        }
+                    });
+                } else {
+                    this.contactsService.saveContact(result, this.usersService.getUserUid().toString());
+                    this.saveContact(null, result);
                 }
-                // const url = this.uploadService.uploadFile(result.file);
-                // replace result.form.image = url;
-                // this.contactsService.saveContact(result, this.usersService.getUserUid().toString());
-                // this.saveContact(null, result);
             }
         });
     }

@@ -9,9 +9,11 @@ export class UploadService {
     constructor(private afStore: AngularFireStorage) {}
 
     uploadFile(uid: string, file: File) {
-        // const storageRef = firebase.storage().ref();
-        // storageRef.child(`${this.basePath}/`).put();
-        const filename = 'test.jpg';
-        this.afStore.upload(`${this.basePath}/${uid}/${filename}`, file);
+        const filename = this.setName(file.name);
+        return this.afStore.upload(`${this.basePath}/${uid}/${filename}`, file);
+    }
+
+    private setName(name) {
+        return name;
     }
 }
