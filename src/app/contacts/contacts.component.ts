@@ -35,7 +35,7 @@ export class ContactsComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             if (typeof result.form !== 'undefined') {
                 if (typeof result.file !== 'undefined') {
-                    const filename = this.uploadService.getProfilePath(this.usersService.getUserUid().toString(), result.file.name);
+                    const filename = this.uploadService.getContactPath(this.usersService.getUserUid().toString(), result.file.name);
                     const upload = this.uploadService.uploadFile(filename, result.file);
 
                     upload.then(res => {
@@ -66,7 +66,7 @@ export class ContactsComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             if (typeof result.form !== 'undefined') {
                 if (typeof result.file !== 'undefined') {
-                    const filename = this.uploadService.getProfilePath(this.usersService.getUserUid().toString(), result.file.name);
+                    const filename = this.uploadService.getContactPath(this.usersService.getUserUid().toString(), result.file.name);
                     const upload = this.uploadService.uploadFile(filename, result.file);
 
                     upload.then(res => {

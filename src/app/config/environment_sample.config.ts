@@ -10,5 +10,10 @@ export const environmentConfig = {
         projectId: '',
         storageBucket: '',
         messagingSenderId: ''
+    },
+    'firebaseStorageBuckets' : {
+        profile: 'users',
+        contacts: 'contacts',
+        messages: 'messages'
     }
 };

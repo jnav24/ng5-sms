@@ -1,14 +1,17 @@
 import {Injectable} from '@angular/core';
-import * as firebase from 'firebase';
+import {environmentConfig} from '@app/config/environment.config';
 import {AngularFireStorage, AngularFireUploadTask} from 'angularfire2/storage';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class UploadService {
-    private basePath: String = 'test';
-    private contactPath: String = 'contacts';
+    private basePath: String;
+    private contactPath: String;
 
-    constructor(private afStore: AngularFireStorage) {}
+    constructor(private afStore: AngularFireStorage) {
+        this.basePath = environmentConfig.firebaseStorageBuckets.profile;
+        this.contactPath = environmentConfig.firebaseStorageBuckets.contacts;
+    }
 
     uploadFile(filename: string, file: File): AngularFireUploadTask {
         return this.afStore.upload(filename, file);
