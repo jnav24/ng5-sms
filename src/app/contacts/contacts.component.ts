@@ -34,20 +34,20 @@ export class ContactsComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(result => {
             if (typeof result.form !== 'undefined') {
-                console.log(result);
                 if (typeof result.file !== 'undefined') {
-                    const upload = this.uploadService.uploadFile(this.usersService.getUserUid().toString(), result.file);
+                    const filename = this.uploadService.getProfilePath(this.usersService.getUserUid().toString(), result.file.name);
+                    const upload = this.uploadService.uploadFile(filename, result.file);
+
                     upload.then(res => {
                         if (res.state === 'success') {
-                            result.form.image = res.downloadURL;
-                            console.log(result);
-                            this.contactsService.saveContact(result, this.usersService.getUserUid().toString());
-                            this.saveContact(null, result);
+                            result.form.image = this.uploadService.getImageName(filename);
+                            this.contactsService.saveContact(result.form, this.usersService.getUserUid().toString());
+                            this.saveContact(null, result.form);
                         }
                     });
                 } else {
-                    this.contactsService.saveContact(result, this.usersService.getUserUid().toString());
-                    this.saveContact(null, result);
+                    this.contactsService.saveContact(result.form, this.usersService.getUserUid().toString());
+                    this.saveContact(null, result.form);
                 }
             }
         });
@@ -57,20 +57,37 @@ export class ContactsComponent implements OnInit {
         const id = this.contacts[letter][int]['id'];
         delete this.contacts[letter][int]['id'];
         this.contacts[letter][int].image = '';
-console.log(this.contacts[letter][int]);
+
         const dialogRef = this.dialog.open(AddContactComponent, {
             width: '800px',
             data: this.contacts[letter][int]
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log(result);
-            // if (result !== '' && typeof result !== 'undefined') {
-            //     this.removeContact(int, letter);
-            //     this.contactsService.updateContact(id, this.usersService.getUserUid().toString(), result);
-            //     this.saveContact(id, result);
-            // }
+            if (typeof result.form !== 'undefined') {
+                if (typeof result.file !== 'undefined') {
+                    const filename = this.uploadService.getProfilePath(this.usersService.getUserUid().toString(), result.file.name);
+                    const upload = this.uploadService.uploadFile(filename, result.file);
+
+                    upload.then(res => {
+                        if (res.state === 'success') {
+                            result.form.image = this.uploadService.getImageName(filename);
+                            this.removeContact(int, letter);
+                            this.contactsService.updateContact(id, this.usersService.getUserUid().toString(), result.form);
+                            this.saveContact(id, result.form);
+                        }
+                    });
+                } else {
+                    this.removeContact(int, letter);
+                    this.contactsService.updateContact(id, this.usersService.getUserUid().toString(), result.form);
+                    this.saveContact(id, result.form);
+                }
+            }
         });
+    }
+
+    hasContactImage(contact: ContactsInterface): boolean {
+        return typeof contact['image'] !== 'undefined' && contact['image'] !== '';
     }
 
     private saveContact(id: string|null, data: ContactsInterface) {

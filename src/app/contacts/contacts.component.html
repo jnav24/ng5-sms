@@ -22,7 +22,8 @@
 					<mat-grid-tile colspan="2">
 						<div class="contact__block--row-content content-left l10">
 							<div class="content-image">
-								<i class="material-icons">account_circle</i>
+								<i class="material-icons" *ngIf="!hasContactImage(contact)">account_circle</i>
+								<img [src]="" *ngIf="hasContactImage(contact)">
 							</div>
 						</div>
 					</mat-grid-tile>

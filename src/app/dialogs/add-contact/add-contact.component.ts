@@ -57,8 +57,6 @@ export class AddContactComponent implements OnInit {
 
     detectFiles(event) {
         this.imageFile = event.target.files[0];
-        console.log(this.imageFile);
-
         this.loadPreview(this.imageFile);
     }
 
