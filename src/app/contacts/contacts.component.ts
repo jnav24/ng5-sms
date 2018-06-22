@@ -56,7 +56,9 @@ export class ContactsComponent implements OnInit {
     editContact(int: number, letter: string) {
         const id = this.contacts[letter][int]['id'];
         delete this.contacts[letter][int]['id'];
-        this.contacts[letter][int].image = '';
+        if (typeof this.contacts[letter][int].image === 'undefined') {
+            this.contacts[letter][int].image = '';
+        }
 
         const dialogRef = this.dialog.open(AddContactComponent, {
             width: '800px',

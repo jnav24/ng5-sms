@@ -32,7 +32,14 @@ export class AddContactComponent implements OnInit {
         });
 
         if (Object.keys(this.data).length) {
-            this.contact.setValue(this.data);
+            this.image = this.data.url || '';
+            this.contact.setValue({
+                email: this.data.email,
+                first_name: this.data.first_name,
+                image: '',
+                last_name: this.data.last_name,
+                phoneType: this.data.phoneType
+            });
             this.title = 'Edit';
         }
     }
@@ -66,6 +73,10 @@ export class AddContactComponent implements OnInit {
         reader.addEventListener('load', () => {
             this.image = reader.result;
         }, false);
+    }
+
+    hasContactImage(): boolean {
+        return typeof this.image !== 'undefined' && this.image !== '';
     }
 }
 

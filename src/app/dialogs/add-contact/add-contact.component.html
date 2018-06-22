@@ -6,8 +6,8 @@
 			<mat-grid-tile colspan="1" class="photo">
 				<div class="photo__box">
 					<div class="photo__box--circle">
-						<i class="material-icons photo__default" *ngIf="!image">account_circle</i>
-						<img [src]="image" alt="" *ngIf="image">
+						<i class="material-icons photo__default" *ngIf="!hasContactImage()">account_circle</i>
+						<img [src]="image" alt="" *ngIf="hasContactImage()">
 					</div>
 					<input type="file" (change)="detectFiles($event)" formControlName="image">
 				</div>
