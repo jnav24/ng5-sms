@@ -42,7 +42,7 @@ export class ContactsComponent implements OnInit {
                         if (res.state === 'success') {
                             result.form.image = this.uploadService.getImageName(filename);
                             this.contactsService.saveContact(result.form, this.usersService.getUserUid().toString());
-                            this.saveContact(null, result.form);
+                            this.saveContact(null, result.form, res.downloadURL);
                         }
                     });
                 } else {
@@ -74,7 +74,7 @@ export class ContactsComponent implements OnInit {
                             result.form.image = this.uploadService.getImageName(filename);
                             this.removeContact(int, letter);
                             this.contactsService.updateContact(id, this.usersService.getUserUid().toString(), result.form);
-                            this.saveContact(id, result.form);
+                            this.saveContact(id, result.form, res.downloadURL);
                         }
                     });
                 } else {
@@ -90,9 +90,13 @@ export class ContactsComponent implements OnInit {
         return typeof contact['image'] !== 'undefined' && contact['image'] !== '';
     }
 
-    private saveContact(id: string|null, data: ContactsInterface) {
+    private saveContact(id: string|null, data: ContactsInterface, url: string = '') {
         if (id !== null && id !== '') {
             data.id = id;
+        }
+
+        if (url !== '') {
+            data['url'] = url;
         }
 
         const letter = data.first_name.split('')[0].toUpperCase();
