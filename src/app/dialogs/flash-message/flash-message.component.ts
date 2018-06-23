@@ -85,7 +85,7 @@ export class FlashMessageComponent implements OnInit {
     }
 
     private getDuration() {
-        if (typeof this.data.duartion !== 'undefined' && Number.isInteger(this.data.duration)) {
+        if (typeof this.data.duration !== 'undefined' && Number.isInteger(this.data.duration)) {
             this.duration = this.data.duration;
         }
     }
