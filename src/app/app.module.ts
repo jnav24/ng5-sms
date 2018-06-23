@@ -50,6 +50,7 @@ import {ControlsService} from '@app/common/services/controls.service';
 import {ContactsService} from '@app/common/services/contacts.service';
 import {MessagesService} from '@app/messages/messages.service';
 import {UploadService} from '@app/common/services/upload.service';
+import { FlashMessageComponent } from './dialogs/flash-message/flash-message.component';
 
 
 
@@ -66,6 +67,7 @@ import {UploadService} from '@app/common/services/upload.service';
         DashboardNavComponent,
         ContactsComponent,
         AddContactComponent,
+        FlashMessageComponent,
     ],
     imports: [
         AngularFireModule.initializeApp(environmentConfig.firebase),
@@ -109,7 +111,8 @@ import {UploadService} from '@app/common/services/upload.service';
         UploadService,
     ],
     entryComponents: [
-       AddContactComponent,
+        AddContactComponent,
+        FlashMessageComponent,
     ],
     bootstrap: [AppComponent]
 })
