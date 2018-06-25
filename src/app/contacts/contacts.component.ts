@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {AddContactComponent} from '@app/dialogs/add-contact/add-contact.component';
-import {ContactsService} from '@app/common/services/contacts.service';
+import {ContactsService} from '@app/contacts/contacts.service';
 import {UsersService} from '@app/common/services/users.service';
 import {ContactsInterface} from '@app/common/interfaces/contacts.interface';
 import * as _ from 'lodash';

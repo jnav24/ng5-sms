@@ -52,7 +52,7 @@ export class ContactsService {
         if (this.fdb.isFirebase()) {
             this.af
                 .object(`${this.tableName}/${uid}`);
-                // .add(contact);
+            // .add(contact);
         }
 
         return this.afs

@@ -5,7 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MessagesService} from '@app/messages/messages.service';
 import {UsersService} from '@app/common/services/users.service';
 import {ControlsService} from '@app/common/services/controls.service';
-import {ContactsService} from '@app/common/services/contacts.service';
+import {ContactsService} from '@app/contacts/contacts.service';
 import {DashboardNavComponent} from '@app/dashboard/dashboard-nav/dashboard-nav.component';
 import {MatToolbarModule} from '@angular/material';
 import {LoginService} from '@app/onboard/login/login.service';

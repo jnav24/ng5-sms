@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {ControlsService} from '@app/common/services/controls.service';
-import {ContactsService} from '@app/common/services/contacts.service';
+import {ContactsService} from '@app/contacts/contacts.service';
 import {MessagesInterface} from '@app/messages/messages.interface';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';

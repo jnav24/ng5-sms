@@ -47,7 +47,7 @@ import {UsersService} from '@app/common/services/users.service';
 import {LogService} from '@app/common/services/log.service';
 import {ResetPasswordService} from '@app/onboard/reset-password/reset-password.service';
 import {ControlsService} from '@app/common/services/controls.service';
-import {ContactsService} from '@app/common/services/contacts.service';
+import {ContactsService} from '@app/contacts/contacts.service';
 import {MessagesService} from '@app/messages/messages.service';
 import {UploadService} from '@app/common/services/upload.service';
 import { FlashMessageComponent } from './dialogs/flash-message/flash-message.component';

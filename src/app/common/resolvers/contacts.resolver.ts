@@ -2,7 +2,7 @@ import {ContactsInterface} from '@app/common/interfaces/contacts.interface';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {Injectable} from '@angular/core';
 import {UsersService} from '@app/common/services/users.service';
-import {ContactsService} from '@app/common/services/contacts.service';
+import {ContactsService} from '@app/contacts/contacts.service';
 import {LogService} from '@app/common/services/log.service';
 import {UploadService} from '@app/common/services/upload.service';
 import * as _ from 'lodash';
