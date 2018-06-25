@@ -8,21 +8,22 @@ import * as _ from 'lodash';
     styleUrls: ['./flash-message.component.scss']
 })
 export class FlashMessageComponent implements OnInit {
+    private condition = true;
     private defaults = {
         status: {
             success: {
                 state: 'success',
-                title: 'Success!',
-                message: 'Halle Berry was successfully added to contacts',
+                title: 'Success',
+                message: 'Action resulted sucessfully',
             },
             error: {
                 state: 'danger',
-                title: 'Oh no!',
-                message: 'Unable to add Halle Berry as a contact',
+                title: 'Error',
+                message: 'Something unexpected occurred',
             }
         }
     };
-    private duration: Number = 2000;
+    private duration: Number = 3000;
     private states: String[] = ['success', 'warn', 'danger', 'default'];
     loading: Boolean = true;
     flash;
@@ -35,30 +36,32 @@ export class FlashMessageComponent implements OnInit {
         this.validateStatus();
 
         this.data.promise
-            .then(res => {
-                // This condition might be too specific
-                if (typeof res['success'] !== 'undefined' && res['success']) {
+            .then(result => {
+                if (this.getPromiseCondition(result)) {
                     this.loading = false;
-                    this.flash = this.validateState(this.data.status.success);
+                    this.flash = this.data.status.success;
+
                     setTimeout(() => {
                         this.dialogRef.close({success: true, message: ''});
                     }, this.duration);
                 }
             })
             .catch(error => {
-                this.flash = this.validateState(this.data.status.error);
+                this.loading = false;
+                this.flash = this.data.status.error;
+
                 setTimeout(() => {
                     this.dialogRef.close({success: false, message: error});
                 }, this.duration);
             });
     }
 
-    private validateState(obj) {
-        if (typeof obj.state === 'undefined' || this.states.indexOf(obj.state) < 0) {
-            obj.state = 'default';
+    private getPromiseCondition(result) {
+        if (typeof this.data.condition === 'function') {
+            return this.data.condition(result);
         }
 
-        return obj;
+        return this.condition;
     }
 
     private validateStatus() {
@@ -67,13 +70,13 @@ export class FlashMessageComponent implements OnInit {
         _.forEach(keys, key => {
             const statusKeys = Object.keys(this.defaults.status.success);
 
-            if (!this.isString(this.data.status[key])) {
+            if (typeof this.data.status[key] === 'undefined') {
                 this.data.status[key] = this.defaults.status[key];
             }
 
             _.forEach(statusKeys, statusKey => {
                 if (!this.isString(this.data.status[key][statusKey])) {
-                    this.data.status[key][statusKey] = this.defaults.status[statusKey];
+                    this.data.status[key][statusKey] = this.defaults.status[key][statusKey];
                 }
             });
         });

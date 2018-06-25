@@ -4,6 +4,8 @@ $size: 75px;
 $states: success #4FA21B, warn yellow, danger #FB2C4B, default grey;
 
 .flash {
+	max-width: 400px;
+
 	&.flash {
 		&-spinner {
 			display: flex;
