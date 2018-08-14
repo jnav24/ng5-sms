@@ -1,0 +1,33 @@
+<div [@fromLogin]="fromLoginState"
+	 (@fromLogin.done)="setAnimateState()"
+	 [ngClass]="{'logoutState': !showLoginAnimate}"
+	 class="loginEnter">
+</div>
+
+<mat-toolbar [@showMenu]="showMenuState"
+			 (@showMenu.done)="setMenuAnimateState()"
+			 [ngClass]="{'logoutState': showMenuAnimate}"
+			 class="nav"
+			 color="primary">
+	<div class="nav__logo">
+		<a [routerLink]="['dashboard']">Logo Here</a>
+	</div>
+
+	<div class="nav__profile">
+		<mat-icon *ngIf="!hasImage()" [matMenuTriggerFor]="profileMenu">account_circle</mat-icon>
+		<div class="profile-img" *ngIf="hasImage()" [matMenuTriggerFor]="profileMenu">
+			<img [src]="user.image_url" alt="" class="fit-img">
+		</div>
+		<mat-menu #profileMenu="matMenu" yPosition="above" overlapTrigger="false">
+			<a [routerLink]="['/dashboard/edit/profile']" mat-menu-item>Edit Profile</a>
+			<a [routerLink]="['/dashboard/logs']" mat-menu-item>Logs</a>
+			<button mat-menu-item (click)="logout()">Log Out</button>
+		</mat-menu>
+	</div>
+</mat-toolbar>
+
+<div [@fadeIn]="fadeState" class="content-container" [ngClass]="{'content-animate': showLoginAnimate}">
+	<div [@routerTransition]="getRouteState(outlet)">
+		<router-outlet #outlet="outlet"></router-outlet>
+	</div>
+</div>

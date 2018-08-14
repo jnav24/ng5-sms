@@ -1,0 +1,52 @@
+@import '../../../assets/base/imports';
+
+$size: 75px;
+$states: success #4FA21B, warn yellow, danger #FB2C4B, default grey;
+
+.flash {
+	max-width: 400px;
+
+	&.flash {
+		&-spinner {
+			display: flex;
+			justify-content: center;
+		}
+
+		@each $state in $states {
+			&-#{nth($state, 1)} {
+				text-align: center;
+
+				.icon-container {
+					display: flex;
+					justify-content: center;
+					width: 100%;
+				}
+
+				.icon {
+					color: #fff;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					@include circle($size, nth($state, 2));
+
+					i.material-icons {
+						font-size: 65px;
+					}
+				}
+
+				h2 {
+					color: nth($state, 2);
+					margin-bottom: 0;
+					margin-top: 25px;
+				}
+
+				p {
+					color: map_get($colors, mid-grey);
+					font-size: 14px;
+					font-weight: 300;
+					margin-top: 8px;
+				}
+			}
+		}
+	}
+}

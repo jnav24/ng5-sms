@@ -1,0 +1,42 @@
+<div class="mat-tab-pt" [formGroup]="securityForm">
+	<div class="login-container">
+		<p>In order to make changes here, you must confirm your current credentials.</p>
+
+		<mat-form-field class="fw-full">
+			<input matInput placeholder="Email" formControlName="email" autocomplete="off">
+		</mat-form-field>
+
+		<mat-form-field class="fw-full">
+			<input matInput placeholder="Password" type="password" formControlName="password">
+		</mat-form-field>
+	</div>
+
+	<p>Enter your new email and/or password below.</p>
+
+	<mat-form-field class="fw-full">
+		<input matInput placeholder="Email" formControlName="newEmail" autocomplete="off">
+	</mat-form-field>
+
+	<mat-form-field class="fw-full">
+		<input matInput placeholder="Password" type="password" formControlName="newPassword" autocomplete="off">
+		<mat-error *ngIf="securityForm.get('newPassword').invalid">
+			Password must be 8 - 24 characters long
+		</mat-error>
+	</mat-form-field>
+
+	<mat-form-field class="fw-full">
+		<input matInput placeholder="Confirm Password" type="password" formControlName="confirmNewPassword" autocomplete="off">
+		<mat-error *ngIf="securityForm.get('confirmNewPassword').invalid">
+			Passwords do <strong>not</strong> match
+		</mat-error>
+	</mat-form-field>
+
+	<div class="form-actions">
+		<button mat-raised-button
+				[disabled]="disallowSave()"
+				(click)="updateAuth()"
+				class="btn btn-accent">
+			Save
+		</button>
+	</div>
+</div>

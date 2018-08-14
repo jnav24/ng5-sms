@@ -1,0 +1,21 @@
+@import "imports";
+
+.table {
+	margin-bottom: 50px;
+}
+
+.mat-header-row {
+	background: map_get($colors, lte-grey);
+}
+
+.fw-fit {
+	background: #fff;
+	border-bottom: 1px solid rgba(#000,0.12);
+	padding: 10px 25px 0 50px;
+	@include box-sizing(border-box);
+
+	.fw-icon {
+		position: absolute;
+		left: -35px;
+	}
+}

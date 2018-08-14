@@ -1,0 +1,20 @@
+.fw-full {
+	width: 100%;
+}
+
+.fw-half {
+	&__flex {
+		display: flex;
+
+		& > * {
+			flex: 1 1 auto;
+		}
+	}
+
+	&__float {
+		@include colgrid(0.25, 2);
+		@include mobile() {
+			@include resetColGrid();
+		};
+	}
+}

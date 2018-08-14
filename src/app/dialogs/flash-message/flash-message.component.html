@@ -1,0 +1,17 @@
+<div *ngIf="loading" class="flash flash-spinner">
+	<mat-spinner diameter="50" color="warn"></mat-spinner>
+</div>
+
+<div *ngIf="!loading" class="flash flash-{{ flash.state }}">
+	<div class="icon-container">
+		<div class="icon">
+			<i class="material-icons" *ngIf="flash.state === 'success'">check</i>
+			<i class="material-icons" *ngIf="flash.state === 'warn'">priority_high</i>
+			<i class="material-icons" *ngIf="flash.state === 'danger'">clear</i>
+			<i class="material-icons" *ngIf="flash.state === 'default'">flag</i>
+		</div>
+	</div>
+
+	<h2>{{ flash.title }}</h2>
+	<p>{{ flash.message }}</p>
+</div>

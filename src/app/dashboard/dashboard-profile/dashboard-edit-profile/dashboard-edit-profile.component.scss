@@ -1,0 +1,52 @@
+@import 'imports';
+
+.mat-tab-pt {
+	padding-top: 25px;
+}
+
+.form-actions {
+	margin-top: 25px;
+	text-align: right;
+}
+
+.photo {
+	&__box {
+		flex-direction: column;
+		text-align: center;
+
+		&--circle {
+			margin: 0 auto 20px;
+			overflow: hidden;
+			position: relative;
+			@include circle(200px, #fff);
+
+			img {
+				@include posa(0,n,n,0);
+			}
+		}
+
+		.photo-button {
+			background: map_get($colors, secondary);
+			display: inline-block;
+
+			&.disabled {
+				background: map_get($colors, light-grey);
+			}
+		}
+	}
+
+	.material-icons {
+		&.photo__default {
+			display: block;
+			font-size: 240px;
+			margin-left: -20px;
+			margin-top: -20px;
+		}
+	}
+}
+
+.form {
+	flex-direction: column;
+	padding: 0;
+	width: 100%;
+}

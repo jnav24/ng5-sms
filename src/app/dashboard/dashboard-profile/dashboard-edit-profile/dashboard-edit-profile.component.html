@@ -1,0 +1,56 @@
+<div class="mat-tab-pt" [formGroup]="profile">
+	<div class="error" *ngIf="error">{{ error }}</div>
+	<mat-grid-list cols="3">
+		<mat-grid-tile colspan="1" class="photo">
+			<div class="photo__box">
+				<div class="photo__box--circle">
+					<i class="material-icons photo__default" *ngIf="!hasContactImage()">account_circle</i>
+					<img [src]="image" alt="" *ngIf="hasContactImage()" class="fit-img">
+				</div>
+				<input type="hidden" formControlName="image">
+				<input id="imageFile" type="file" (change)="detectFiles($event)">
+			</div>
+		</mat-grid-tile>
+
+		<mat-grid-tile colspan="2">
+			<div class="form">
+				<mat-grid-list cols="2" rowHeight="60" gutterSize="10" >
+					<mat-grid-tile colspan="1">
+						<mat-form-field class="fw-full">
+							<input matInput placeholder="First Name" formControlName="first_name">
+						</mat-form-field>
+					</mat-grid-tile>
+
+					<mat-grid-tile colspan="1">
+						<mat-form-field class="fw-full">
+							<input matInput placeholder="Last Name" formControlName="last_name">
+						</mat-form-field>
+					</mat-grid-tile>
+				</mat-grid-list>
+
+				<mat-grid-list>
+					<mat-grid-tile>
+						<mat-form-field class="fw-full">
+							<input matInput disabled placeholder="Email (Can only be changed in Security tab)" value="{{ user.email }}">
+						</mat-form-field>
+					</mat-grid-tile>
+
+					<mat-grid-tile>
+						<mat-form-field class="fw-full">
+							<input matInput placeholder="Twilio Number">
+						</mat-form-field>
+					</mat-grid-tile>
+				</mat-grid-list>
+
+				<div class="form-actions">
+					<button mat-raised-button
+							(click)="updateProfile()"
+							[disabled]="disallowSave()"
+							class="btn btn-accent">
+						Save
+					</button>
+				</div>
+			</div>
+		</mat-grid-tile>
+	</mat-grid-list>
+</div>

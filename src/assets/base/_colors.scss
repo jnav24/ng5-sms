@@ -1,0 +1,34 @@
+/**
+ * Angular Material Custom theme colors
+ * To see a list of colors to choose from, go here
+ * https://material.io/design/color/#tools-for-picking-colors
+ */
+@import '~@angular/material/theming';
+@include mat-core();
+
+$awesome-app-primary: mat-palette($mat-cyan);
+$awesome-app-accent:  mat-palette($mat-orange, A200, A100, A400);
+$awesome-app-warn:    mat-palette($mat-deep-orange);
+$awesome-app-theme: mat-light-theme($awesome-app-primary, $awesome-app-accent, $awesome-app-warn);
+
+@include angular-material-theme($awesome-app-theme);
+
+/**
+ * Defining colors for custom theme every where else
+ * that isn't a Angular Material component
+ */
+$primary: map_get($awesome-app-primary, 600);
+$secondary: map_get($awesome-app-accent, 300);
+
+$colors: (
+	primary: $primary,
+	accent: $secondary,
+	warn: map_get($awesome-app-warn, 600),
+	danger: map_get($awesome-app-warn, A400),
+	link-primary: map_get($awesome-app-primary, 900),
+	button-primary: map_get($awesome-app-primary, 900),
+	body-copy: map_get($mat-gray, 600),
+	lte-grey: map_get($mat-gray, 50),
+	mid-grey: map_get($mat-gray, 400),
+	drk-grey: map_get($mat-gray, 900),
+);

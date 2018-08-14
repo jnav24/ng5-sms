@@ -1,0 +1,26 @@
+@import 'imports';
+
+.center-button {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+}
+
+.form {
+	&-actions {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: center;
+	}
+
+	button {
+		@include transition(0.25s all ease-in);
+
+		&.loader {
+			min-width: 10px;
+			padding-left: 10px;
+			padding-right: 10px;
+			width: 45px;
+		}
+	}
+}

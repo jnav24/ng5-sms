@@ -1,0 +1,38 @@
+<h1>Logs</h1>
+
+<div class="mat-elevation-z1 table">
+	<mat-form-field class="fw-full fw-fit">
+		<mat-icon class="fw-icon">search</mat-icon>
+		<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+	</mat-form-field>
+
+	<mat-table #table [dataSource]="dataSource">
+		<ng-container matColumnDef="created">
+			<mat-header-cell *matHeaderCellDef> Created </mat-header-cell>
+			<mat-cell *matCellDef="let element"> {{element.created}} </mat-cell>
+		</ng-container>
+
+		<!-- Name Column -->
+		<ng-container matColumnDef="level">
+			<mat-header-cell mat-header-cell *matHeaderCellDef> Level </mat-header-cell>
+			<mat-cell *matCellDef="let element"> {{element.level}} </mat-cell>
+		</ng-container>
+
+		<!-- Weight Column -->
+		<ng-container matColumnDef="page">
+			<mat-header-cell mat-header-cell *matHeaderCellDef> Page </mat-header-cell>
+			<mat-cell *matCellDef="let element"> {{element.page}} </mat-cell>
+		</ng-container>
+
+		<!-- Symbol Column -->
+		<ng-container matColumnDef="message">
+			<mat-header-cell mat-header-cell *matHeaderCellDef> Message </mat-header-cell>
+			<mat-cell *matCellDef="let element"> {{element.message}} </mat-cell>
+		</ng-container>
+
+		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+		<mat-row mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+	</mat-table>
+
+	<mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="10"></mat-paginator>
+</div>

@@ -1,0 +1,21 @@
+@import 'imports';
+
+.mat-tab-pt {
+	padding-top: 25px;
+}
+
+.form-actions {
+	margin-top: 25px;
+	text-align: right;
+}
+
+.login-container {
+	background: map_get($colors, lte-grey);
+	margin-bottom: 15px;
+	padding: 15px;
+}
+
+p {
+	color: lighten(#000, 25%);
+	margin-top: 0;
+}

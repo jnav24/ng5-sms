@@ -1,0 +1,62 @@
+@import '../../assets/base/imports';
+$size: 30px;
+
+.loginEnter {
+	background: map-get($colors, primary);
+	height: 100%;
+	opacity: 1;
+	width: 100%;
+	z-index: 10;
+	@include posa(0,n,n,0);
+
+	&.logoutState {
+		opacity: 0;
+		top: -9999px;
+	}
+}
+
+.nav {
+	justify-content: center;
+
+	&.logoutState {
+		opacity: 0;
+		transform: translateY(-100%);
+	}
+
+	> div {
+		flex: 1 1 auto;
+	}
+
+	&__profile {
+		text-align: right;
+
+		.material-icons {
+			cursor: pointer;
+			font-size: $size;
+			height: $size;
+			width: $size;
+		}
+	}
+}
+
+.profile-img {
+	display: inline-block;
+	overflow: hidden;
+	@include circle(($size - 3px), white);
+}
+
+.content-container {
+	margin: 0 auto;
+	padding-top: 50px;
+	width: 1000px;
+
+	&.content-animate {
+		opacity: 0;
+		transform: translateY(-50%);
+	}
+
+	@include smDesktop() {
+		margin: 0 pxtoem(15);
+		width: auto;
+	}
+}
