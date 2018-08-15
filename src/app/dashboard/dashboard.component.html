@@ -26,7 +26,7 @@
 	</div>
 </mat-toolbar>
 
-<div [@fadeIn]="fadeState" class="content-container" [ngClass]="{'content-animate': showLoginAnimate}">
+<div [@fadeIn]="fadeState" class="content-container" [ngClass]="{'content-animate': showLoginAnimate, 'content-full': showFullContent(outlet)}">
 	<div [@routerTransition]="getRouteState(outlet)">
 		<router-outlet #outlet="outlet"></router-outlet>
 	</div>

@@ -140,4 +140,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
             return this.loginService.logOutAndRedirect();
         }, 2000);
     }
+
+    showFullContent(outlet: RouterOutlet) {
+        const showFull = ['home'];
+        return showFull.includes(outlet.activatedRouteData['page']);
+    }
 }

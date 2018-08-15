@@ -13,6 +13,7 @@ import {AngularFireDatabase} from 'angularfire2/database';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {AngularFirestore} from 'angularfire2/firestore';
 import {NgxsModule} from 'ngxs';
+import {AngularFireStorage} from 'angularfire2/storage';
 
 // Config
 import { RouterConfig } from '@app/config/router.config';
@@ -27,6 +28,8 @@ import { OnboardComponent } from './onboard/onboard.component';
 import { LoginComponent } from './onboard/login/login.component';
 import { RegisterComponent } from './onboard/register/register.component';
 import { ResetPasswordComponent } from './onboard/reset-password/reset-password.component';
+import { DashboardLogsComponent } from './dashboard/dashboard-logs/dashboard-logs.component';
+import { ChatComponent } from './chat/chat.component';
 
 // Guard
 import {DashboardAuthGuard} from '@app/dashboard/dashboard-auth.guard';
@@ -50,8 +53,8 @@ import { DashboardEditProfileComponent } from './dashboard/dashboard-profile/das
 import { FlashMessageComponent } from './dialogs/flash-message/flash-message.component';
 import { DashboardSecurityComponent } from './dashboard/dashboard-profile/dashboard-security/dashboard-security.component';
 import {UploadService} from '@app/common/services/upload.service';
-import {AngularFireStorage} from 'angularfire2/storage';
-import { DashboardLogsComponent } from './dashboard/dashboard-logs/dashboard-logs.component';
+import { ChatSideComponent } from './chat/chat-side/chat-side.component';
+import { ChatMainComponent } from './chat/chat-main/chat-main.component';
 
 
 
@@ -69,6 +72,9 @@ import { DashboardLogsComponent } from './dashboard/dashboard-logs/dashboard-log
         FlashMessageComponent,
         DashboardSecurityComponent,
         DashboardLogsComponent,
+        ChatComponent,
+        ChatSideComponent,
+        ChatMainComponent,
     ],
     imports: [
         AngularFireModule.initializeApp(environmentConfig.firebase),

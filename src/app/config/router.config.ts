@@ -4,9 +4,9 @@ import {DashboardAuthGuard} from '@app/dashboard/dashboard-auth.guard';
 import {OnboardComponent} from '@app/onboard/onboard.component';
 import {UsersResolver} from '@app/common/resolvers/users.resolvers';
 import {OnboardGuard} from '@app/onboard/onboard.guard';
-import {DashboardHomeComponent} from '@app/dashboard/dashboard-home/dashboard-home.component';
 import {DashboardProfileComponent} from '@app/dashboard/dashboard-profile/dashboard-profile.component';
 import {DashboardLogsComponent} from '@app/dashboard/dashboard-logs/dashboard-logs.component';
+import {ChatComponent} from '@app/chat/chat.component';
 
 export const RouterConfig: Route[] = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -19,7 +19,7 @@ export const RouterConfig: Route[] = [
         canActivate: [DashboardAuthGuard],
         resolve: { user: UsersResolver },
         children: [
-            { path: '', component: DashboardHomeComponent, data: { page: 'home'} },
+            { path: '', component: ChatComponent, data: { page: 'home'} },
             { path: 'edit/profile', component: DashboardProfileComponent, data: { page: 'edit-profile'} },
             { path: 'logs', component: DashboardLogsComponent, data: { page: 'logs'} }
         ]

@@ -50,6 +50,11 @@ $size: 30px;
 	padding-top: 50px;
 	width: 1000px;
 
+	&.content-full {
+		padding: 0;
+		width: 100%;
+	}
+
 	&.content-animate {
 		opacity: 0;
 		transform: translateY(-50%);
