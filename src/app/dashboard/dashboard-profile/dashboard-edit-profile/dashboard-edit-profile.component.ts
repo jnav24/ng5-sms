@@ -37,7 +37,8 @@ export class DashboardEditProfileComponent implements OnInit, OnDestroy {
         this.profile = this.fb.group({
             first_name: ['', [Validators.required, Validators.minLength(3)]],
             last_name: ['', [Validators.required, Validators.minLength(3)]],
-            image: ['', [CustomValidator.checkImage()]]
+            image: ['', [CustomValidator.checkImage()]],
+            number: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(10), Validators.pattern(/^\d+$/)]]
         });
 
         this.userSubscription = this.store
@@ -47,7 +48,8 @@ export class DashboardEditProfileComponent implements OnInit, OnDestroy {
                 this.profile.setValue({
                     first_name: this.user.first_name,
                     last_name: this.user.last_name,
-                    image: this.user.image || ''
+                    image: this.user.image || '',
+                    number: this.user.twilio_number || '',
                 });
 
                 this.image = this.user.image_url || '';
@@ -172,7 +174,8 @@ export class DashboardEditProfileComponent implements OnInit, OnDestroy {
     private setDataForSave(data) {
         return {
             first_name: data.first_name,
-            last_name: data.last_name
+            last_name: data.last_name,
+            twilio_number: data.number
         };
     }
 }

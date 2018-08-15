@@ -7,4 +7,5 @@ export interface UserInterface {
     last_name: string;
     active?: boolean;
     token?: string;
+    twilio_number?: number;
 }
