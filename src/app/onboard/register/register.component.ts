@@ -55,6 +55,7 @@ export class RegisterComponent implements OnInit {
                         email: this.signup.value.email,
                         first_name: this.signup.value.first_name,
                         last_name: this.signup.value.last_name,
+                        image: '',
                         active: true,
                         token: token,
                     };
