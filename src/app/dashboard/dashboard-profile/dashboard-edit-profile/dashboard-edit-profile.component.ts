@@ -38,7 +38,7 @@ export class DashboardEditProfileComponent implements OnInit, OnDestroy {
             first_name: ['', [Validators.required, Validators.minLength(3)]],
             last_name: ['', [Validators.required, Validators.minLength(3)]],
             image: ['', [CustomValidator.checkImage()]],
-            number: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(10), Validators.pattern(/^\d+$/)]]
+            twilio_number: ['', [Validators.required, Validators.maxLength(12), Validators.minLength(12), Validators.pattern(/^\+1\d+$/)]]
         });
 
         this.userSubscription = this.store
@@ -49,7 +49,7 @@ export class DashboardEditProfileComponent implements OnInit, OnDestroy {
                     first_name: this.user.first_name,
                     last_name: this.user.last_name,
                     image: this.user.image || '',
-                    number: this.user.twilio_number || '',
+                    twilio_number: this.user.twilio_number || '',
                 });
 
                 this.image = this.user.image_url || '';

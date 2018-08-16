@@ -37,8 +37,8 @@
 
 					<mat-grid-tile>
 						<mat-form-field class="fw-full">
-							<input matInput placeholder="Twilio Number" formControlName="number">
-							<mat-error *ngIf="profile.get('number').invalid">
+							<input matInput placeholder="Twilio Number" formControlName="twilio_number">
+							<mat-error *ngIf="profile.get('twilio_number').invalid">
 								Numbers only and must be 10 digits
 							</mat-error>
 						</mat-form-field>
