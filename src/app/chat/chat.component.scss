@@ -1,0 +1,26 @@
+@import 'imports';
+
+.chat-box {
+	position: relative;
+}
+
+.chat-container {
+	background: #000;
+	display: flex;
+	flex-direction: column;
+
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	align-content: stretch;
+
+	height: 100%;
+
+	&__msg-list {
+		flex: 1;
+	}
+
+	&__msg-body {
+		flex: 3;
+	}
+}

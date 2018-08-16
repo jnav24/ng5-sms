@@ -51,6 +51,8 @@ $size: 30px;
 	width: 1000px;
 
 	&.content-full {
+		height: calc(100% - 64px);
+		margin: 0;
 		padding: 0;
 		width: 100%;
 	}
