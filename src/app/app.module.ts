@@ -41,6 +41,7 @@ import {ChatAggregateResolver} from '@app/common/resolvers/chat-aggregate.resolv
 
 // States
 import {UserState} from '@app/common/states/user.state';
+import {ChatState} from '@app/common/states/chat.state';
 
 // Services
 import {LoginService} from '@app/onboard/login/login.service';
@@ -97,7 +98,8 @@ import { ChatMainComponent } from './chat/chat-main/chat-main.component';
         MatTableModule,
         MatToolbarModule,
         NgxsModule.forRoot([
-            UserState
+            UserState,
+            ChatState,
         ]),
         ReactiveFormsModule,
         RouterModule.forRoot(RouterConfig),
