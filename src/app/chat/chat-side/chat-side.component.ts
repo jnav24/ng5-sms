@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from 'ngxs';
 
 @Component({
-  selector: 'app-chat-side',
-  templateUrl: './chat-side.component.html',
-  styleUrls: ['./chat-side.component.scss']
+    selector: 'app-chat-side',
+    templateUrl: './chat-side.component.html',
+    styleUrls: ['./chat-side.component.scss']
 })
 export class ChatSideComponent implements OnInit {
+    public chats;
 
-  constructor() { }
+    constructor(private store: Store) { }
 
-  ngOnInit() {
-  }
-
+    ngOnInit() {
+        this.chats = this.store.select(store => store.chat);
+    }
 }

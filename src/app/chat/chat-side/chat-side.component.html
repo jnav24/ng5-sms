@@ -1,3 +1,7 @@
 <p>
   chat-side works!
 </p>
+
+<ul>
+	<li *ngFor="let chat of chats | async">{{ chat.first_name }}</li>
+</ul>
