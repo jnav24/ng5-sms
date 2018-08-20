@@ -60,4 +60,10 @@ export class UsersService {
 
         return this.afs.collection(`users`).doc(uid).update(data);
     }
+
+    getUserAggregatedChat(uid: string): Observable<{}[]> {
+        if (this.fdb.isFirestore()) {
+            return this.afs.collection(`users`).doc(uid).collection(`chat_aggregate`).valueChanges();
+        }
+    }
 }

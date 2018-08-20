@@ -37,6 +37,7 @@ import {OnboardGuard} from '@app/onboard/onboard.guard';
 
 // Resolvers
 import {UsersResolver} from '@app/common/resolvers/users.resolvers';
+import {ChatAggregateResolver} from '@app/common/resolvers/chat-aggregate.resolvers';
 
 // States
 import {UserState} from '@app/common/states/user.state';
@@ -106,6 +107,7 @@ import { ChatMainComponent } from './chat/chat-main/chat-main.component';
         AngularFireAuth,
         AngularFirestore,
         AngularFireStorage,
+        ChatAggregateResolver,
         FirebaseDbService,
         LoginService,
         RegisterService,

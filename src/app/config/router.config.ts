@@ -7,6 +7,7 @@ import {OnboardGuard} from '@app/onboard/onboard.guard';
 import {DashboardProfileComponent} from '@app/dashboard/dashboard-profile/dashboard-profile.component';
 import {DashboardLogsComponent} from '@app/dashboard/dashboard-logs/dashboard-logs.component';
 import {ChatComponent} from '@app/chat/chat.component';
+import {ChatAggregateResolver} from '@app/common/resolvers/chat-aggregate.resolvers';
 
 export const RouterConfig: Route[] = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -17,7 +18,7 @@ export const RouterConfig: Route[] = [
         path: 'dashboard',
         component: DashboardComponent,
         canActivate: [DashboardAuthGuard],
-        resolve: { user: UsersResolver },
+        resolve: { user: UsersResolver, chat: ChatAggregateResolver },
         children: [
             { path: '', component: ChatComponent, data: { page: 'home'} },
             { path: 'edit/profile', component: DashboardProfileComponent, data: { page: 'edit-profile'} },
